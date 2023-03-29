@@ -1,6 +1,7 @@
 // Level Details
+const levelsPepesTable = document.querySelector('[datasource="levels-pepes-table"]');
+
 function loadPepesTableLevels(data) {
-    const levelsPepesTable = document.querySelector('[datasource="levels-pepes-table"]');
     data.forEach((entry, index) => {
         let levelElement = ''
 
