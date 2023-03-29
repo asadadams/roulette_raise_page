@@ -68,7 +68,7 @@ function loadLeaderBoardData(data) {
             addressElement.setAttribute('class', 'text-leaderboard');
             amountElement.setAttribute('class', 'text-leaderboard');
             airDropElement = `<img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/64201b987894bf1462226062_Fill%2018.png" loading="lazy" alt="" class="airdrop-check">`;
-        } else if (entry.rank >= 97 && entry.rank <= 100) {
+        } else if (entry.rank > 3 && entry.rank <= 100) {
             rankElement = `<div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-leaderboard-regular rank">#${entry.rank}</div>`
             addressElement.setAttribute('class', 'text-leaderboard-regular');
             amountElement.setAttribute('class', 'text-leaderboard-regular');

@@ -121,7 +121,7 @@ function loadPepesTableLevels(data) {
 
 
 //Loading the first data
-loadPepesTableLevels(levelsData.slice(0, 2))
+loadPepesTableLevels(levelsData.slice(0, 3))
 
 
 if (levelsData.length > 3) {
@@ -134,7 +134,7 @@ const showMoreLevelsButton = document.getElementById('showmoreLevelsButton');
 
 // add a click event listener to the "Show More" button
 showMoreLevelsButton.addEventListener("click", () => {
-    loadPepesTableLevels(levelsData.slice(2))
+    loadPepesTableLevels(levelsData.slice(3))
     showMoreLevelsButton.style.display = 'none'
 })
 
