@@ -166,10 +166,10 @@ function removeAllEntries() {
 
 
 // Loading the rest levels when shomore levels button is clicked
-const showMoreLevelsButton = document.getElementById('showmore');
+const showmoreButton = document.getElementById('showmore');
 
 // add a click event listener to the "Show More" button
-showMoreLevelsButton.addEventListener("click", () => {
+showmoreButton.addEventListener("click", () => {
     removeAllEntries()
     loadLeaderBoardData(levelsData.slice(0, 120))
     document.getElementById('showmore').style.display = 'none'
