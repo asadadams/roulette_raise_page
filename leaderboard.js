@@ -138,7 +138,7 @@ if (leaderboardData.length > 100) {
     endIndex = 99
 }
 
-loadLeaderBoardData(leaderBoardTable.slice(startIndex, endIndex))
+loadLeaderBoardData(leaderboardData.slice(startIndex, endIndex))
 
 
-loadLeaderBoardData(leaderBoardTable.slice(96, 99))
+loadLeaderBoardData(leaderboardData.slice(96, 99))
