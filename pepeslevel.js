@@ -22,7 +22,7 @@ levelsData.slice(0, 10).forEach((entry, index) => {
         entryElement.classList.add('open')
     } else {
         levelElement = `<div class="l-status">
-        <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-normal ld">#${entry.level}</div>
+        <div style="padding:0px;" fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-normal ld">#${entry.level}</div>
         <div class="level-text">Level ${entry.level}</div>
      </div>`
     }
