@@ -84,7 +84,7 @@ levelsData.slice(0, 10).forEach((entry, index) => {
                    <div class="text-block---smaill">$PEG Price</div>
                 </div>
                 <div class="div-wrapper">
-                   <div class="text-block---smaill value">$${Number(entry.max_raise) / Number(entry.peg_per_level)}<</div>
+                   <div class="text-block---smaill value">$${parseFloat(entry.max_raise.replace(/,/g, "")) / parseFloat(entry.peg_per_level.replace(/,/g, ""))}<</div>
                 </div>
              </div>
           </div>
@@ -107,7 +107,7 @@ levelsData.slice(0, 10).forEach((entry, index) => {
                    <div class="text-block---smaill">$PEG Price</div>
                 </div>
                 <div class="div-wrapper">
-                   <div class="text-block---smaill value">$${Number(entry.max_raise) / Number(entry.peg_per_level)}</div>
+                   <div class="text-block---smaill value">$${parseFloat(entry.max_raise.replace(/,/g, "")) / parseFloat(entry.peg_per_level.replace(/,/g, ""))}</div>
                 </div>
              </div>
           </div>
