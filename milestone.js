@@ -1,51 +1,4 @@
 // Level Details
-const levelsData = [
-    {
-        "level": 1,
-        "max_raise": "1,000,000",
-        "ratio": "25",
-        "peg_per_level": "10,000",
-        "pls_contribute": "250,000",
-        "price_per_pls": "0.025",
-        "usdc_contribute": "750,000",
-        "price_per_eth": "0.0348",
-        "filled": 100
-    },
-    {
-        "level": 2,
-        "max_raise": "2,000,000",
-        "ratio": "25",
-        "peg_per_level": "20,000",
-        "pls_contribute": "500,000",
-        "price_per_pls": "0.025",
-        "usdc_contribute": "1,500,000",
-        "price_per_eth": "0.0348",
-        "filled": 100
-    },
-    {
-        "level": 3,
-        "max_raise": "3,000,000",
-        "ratio": "25",
-        "peg_per_level": "30,000",
-        "pls_contribute": "750,000",
-        "price_per_pls": "0.025",
-        "usdc_contribute": "2,250,000",
-        "price_per_eth": "0.0348",
-        "filled": 25
-    },
-    {
-        "level": 4,
-        "max_raise": "4,000,000",
-        "ratio": "25",
-        "peg_per_level": "40,000",
-        "pls_contribute": "1,000,000",
-        "price_per_pls": "0.025",
-        "usdc_contribute": "3,000,000",
-        "price_per_eth": "0.0348",
-        "filled": 0
-    }
-];
-
 const levelsTable = document.querySelector('[datasource="levels-table"]');
 levelsData.slice(0, 10).forEach((entry, index) => {
     let levelElement = ''
@@ -54,15 +7,15 @@ levelsData.slice(0, 10).forEach((entry, index) => {
     entryElement.setAttribute('class', 'table_item')
     entryElement.setAttribute('role', 'row')
 
-    if (entry.filled == 0) {
-        levelElement = `<div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-normal ld">#${entry.level}</div>`
-    } else if (entry.filled != 0 && entry.filled != 100) {
-        levelElement = `<div class="table9_column-content"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/6420113ecc09c93f9ec2d90f_open.png" loading="lazy" alt="" class="table_image"></div>`
-        entryElement.classList.add('open')
-    } else if (entry.filled == 100) {
-        levelElement = `<div class="table9_column-content"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/64200f60acf50ee5d2360703_SOLD%20OUT.png" loading="lazy" alt="" class="table_image"></div>`
-        entryElement.classList.add('soldout')
-    }
+    // if (entry.filled == 0) {
+    //     levelElement = `<div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-normal ld">#${entry.level}</div>`
+    // } else if (entry.filled != 0 && entry.filled != 100) {
+    //     levelElement = `<div class="table9_column-content"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/6420113ecc09c93f9ec2d90f_open.png" loading="lazy" alt="" class="table_image"></div>`
+    //     entryElement.classList.add('open')
+    // } else if (entry.filled == 100) {
+    //     levelElement = `<div class="table9_column-content"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/64200f60acf50ee5d2360703_SOLD%20OUT.png" loading="lazy" alt="" class="table_image"></div>`
+    //     entryElement.classList.add('soldout')
+    // }
 
     if (entry.filled == 100) {
         levelElement = `<div class="table9_column-content"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/64200f60acf50ee5d2360703_SOLD%20OUT.png" loading="lazy" alt="" class="table_image"></div>`
