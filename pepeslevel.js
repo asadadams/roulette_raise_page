@@ -25,7 +25,6 @@ levelsData.slice(0, 10).forEach((entry, index) => {
         <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-normal ld">#${entry.level}</div>
         <div class="level-text">Level ${entry.level}</div>
      </div>`
-        levelElement = `<div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-normal ld">#${entry.level}</div>`
     }
 
     entryElement.innerHTML = `
