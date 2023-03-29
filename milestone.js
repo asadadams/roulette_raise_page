@@ -7,16 +7,6 @@ levelsData.slice(0, 10).forEach((entry, index) => {
     entryElement.setAttribute('class', 'table_item')
     entryElement.setAttribute('role', 'row')
 
-    // if (entry.filled == 0) {
-    //     levelElement = `<div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-normal ld">#${entry.level}</div>`
-    // } else if (entry.filled != 0 && entry.filled != 100) {
-    //     levelElement = `<div class="table9_column-content"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/6420113ecc09c93f9ec2d90f_open.png" loading="lazy" alt="" class="table_image"></div>`
-    //     entryElement.classList.add('open')
-    // } else if (entry.filled == 100) {
-    //     levelElement = `<div class="table9_column-content"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/64200f60acf50ee5d2360703_SOLD%20OUT.png" loading="lazy" alt="" class="table_image"></div>`
-    //     entryElement.classList.add('soldout')
-    // }
-
     if (entry.filled == 100) {
         levelElement = `<div class="table9_column-content"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/64200f60acf50ee5d2360703_SOLD%20OUT.png" loading="lazy" alt="" class="table_image"></div>`
         entryElement.classList.add('soldout')
