@@ -136,9 +136,9 @@ let endIndex = 10
 if (leaderboardData.length > 100) {
     startIndex = 96
     endIndex = 99
-
-    loadLeaderBoardData(leaderBoardTable.slice(startIndex, endIndex))
 }
+
+loadLeaderBoardData(leaderBoardTable.slice(startIndex, endIndex))
 
 
 loadLeaderBoardData(leaderBoardTable.slice(96, 99))
