@@ -142,3 +142,11 @@ loadLeaderBoardData(leaderboardData.slice(startIndex, endIndex))
 
 
 loadLeaderBoardData(leaderboardData.slice(96, 99))
+
+
+if (leaderBoardTableData.length > 120) {
+    let leaderBoardButtons = document.getElementById('leaderBoardButtons')
+    let showTop120ContributorsButton = document.createElement('div');
+    showTop120ContributorsButton.innerHTML = `<a href="#" class="button-2 is-icon contribution w-inline-block"><div class="button-text"><div class="text-block-copy">See Top 120 Contributooors</div></div></a>`
+    leaderBoardButtons.appendChild(showTop120ContributorsButton)
+}
