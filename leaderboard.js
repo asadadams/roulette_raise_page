@@ -145,14 +145,6 @@ loadLeaderBoardData(leaderboardData.slice(startIndex, endIndex))
 // Loading last entries
 loadLeaderBoardData(leaderboardData.slice(100, 104))
 
-//Appending show more button when data is more than 120
-if (leaderboardData.length > 120) {
-    let leaderBoardButtons = document.getElementById('leaderBoardButtons')
-    let showTop120ContributorsButton = document.createElement('div');
-    showTop120ContributorsButton.innerHTML = `<a href="#" id='showmore' class="button-2 is-icon contribution w-inline-block"><div class="button-text"><div class="text-block-copy">See Top 120 Contributooors</div></div></a>`
-    leaderBoardButtons.appendChild(showTop120ContributorsButton)
-}
-
 
 function removeAllEntries() {
     // Get all the elements with the specific class name
@@ -165,12 +157,25 @@ function removeAllEntries() {
 }
 
 
-// Loading the rest levels when shomore levels button is clicked
-const showmoreButton = document.getElementById('showmore');
 
-// add a click event listener to the "Show More" button
-showmoreButton.addEventListener("click", () => {
-    removeAllEntries()
-    loadLeaderBoardData(levelsData.slice(0, 120))
-    document.getElementById('showmore').style.display = 'none'
-})
+//Appending show more button when data is more than 120
+if (leaderboardData.length > 120) {
+    let leaderBoardButtons = document.getElementById('leaderBoardButtons')
+    let showTop120ContributorsButton = document.createElement('div');
+    showTop120ContributorsButton.innerHTML = `<a href="#" id='showmore' class="button-2 is-icon contribution w-inline-block"><div class="button-text"><div class="text-block-copy">See Top 120 Contributooors</div></div></a>`
+    leaderBoardButtons.appendChild(showTop120ContributorsButton)
+
+
+    // Loading the rest levels when shomore levels button is clicked
+    const showmoreButton = document.getElementById('showmore');
+
+    // add a click event listener to the "Show More" button
+    showmoreButton.addEventListener("click", () => {
+        removeAllEntries()
+        loadLeaderBoardData(levelsData.slice(0, 120))
+        document.getElementById('showmore').style.display = 'none'
+    })
+
+}
+
+
