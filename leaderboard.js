@@ -21,7 +21,7 @@ const leaderboardData = [
 const leaderBoardTable = document.querySelector('[datasource="leaderboard-table"]');
 
 function loadLeaderBoardData(data) {
-    leaderboardData.forEach((entry, index) => {
+    data.forEach((entry, index) => {
         let rank = index + 1
 
         //Creating elements
