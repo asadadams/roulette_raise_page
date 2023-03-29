@@ -32,7 +32,7 @@ function loadLeaderBoardData(data) {
         let amountElement = document.createElement('div')
 
         // Assigning attributes to elements
-        entryElement.setAttribute('class', 'table_item colour leader-entry')
+        entryElement.setAttribute('class', 'table_item colour leaderboard-entry')
         entryElement.setAttribute('role', 'row')
         addressElement.setAttribute('fs-cmssort-type', 'date');
         addressElement.setAttribute('fs-cmssort-field', 'IDENTIFIER');
@@ -125,28 +125,52 @@ loadLeaderBoardData(leaderboardData.slice(0, 3))
 
 //Appening extra elements to page , element with dots . 
 const entryExtraElement = document.createElement('div');
-entryExtraElement.classList.add('table_item', 'extra');
+entryExtraElement.classList.add('table_item', 'extra', 'leaderboard-entry');
 entryExtraElement.innerHTML = `<div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-leaderboard-regular extra">.</div>`
 leaderBoardTable.appendChild(entryExtraElement);
 leaderBoardTable.appendChild(entryExtraElement.cloneNode(true));
 
 
 let startIndex = 6
-let endIndex = 10
+let endIndex = 9
 if (leaderboardData.length > 100) {
     startIndex = 96
     endIndex = 99
 }
 
+//Loading middle entries
 loadLeaderBoardData(leaderboardData.slice(startIndex, endIndex))
 
 
-loadLeaderBoardData(leaderboardData.slice(96, 99))
+// Loading last entries
+loadLeaderBoardData(leaderboardData.slice(100, 104))
 
-
+//Appending show more button when data is more than 120
 if (leaderboardData.length > 120) {
     let leaderBoardButtons = document.getElementById('leaderBoardButtons')
     let showTop120ContributorsButton = document.createElement('div');
-    showTop120ContributorsButton.innerHTML = `<a href="#" class="button-2 is-icon contribution w-inline-block"><div class="button-text"><div class="text-block-copy">See Top 120 Contributooors</div></div></a>`
+    showTop120ContributorsButton.innerHTML = `<a href="#" id='showmore' class="button-2 is-icon contribution w-inline-block"><div class="button-text"><div class="text-block-copy">See Top 120 Contributooors</div></div></a>`
     leaderBoardButtons.appendChild(showTop120ContributorsButton)
 }
+
+
+function removeAllEntries() {
+    // Get all the elements with the specific class name
+    const elementsToRemove = document.querySelectorAll('.leaderboard-entry');
+
+    // Loop through the selected elements and remove them one by one
+    for (let i = 0; i < elementsToRemove.length; i++) {
+        elementsToRemove[i].remove();
+    }
+}
+
+
+// Loading the rest levels when shomore levels button is clicked
+const showMoreLevelsButton = document.getElementById('showmore');
+
+// add a click event listener to the "Show More" button
+showMoreLevelsButton.addEventListener("click", () => {
+    removeAllEntries()
+    loadLeaderBoardData(levelsData.slice(0, 120))
+    document.getElementById('showmore').style.display = 'none'
+})

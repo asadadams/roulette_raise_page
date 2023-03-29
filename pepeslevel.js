@@ -122,11 +122,12 @@ function loadPepesTableLevels(data) {
 
 
 //Loading the first data
-loadPepesTableLevels(levelsData.slice(0, 3))
+loadPepesTableLevels(levelsData.slice(0, 10))
 
 
-if (levelsData.length > 3) {
+if (levelsData.length > 10) {
     let showMoreLevelsButtonElement = document.createElement('div');
+    entryElement.setAttribute('id', 'showmoreLevelsButtonWrapper')
     showMoreLevelsButtonElement.innerHTML = `<div id="w-node-_59dc2a35-3ddb-79f5-1659-43a5e5745752-5c7ba5ac" class="level-button"><div class="button-wrapper"><a id="showmoreLevelsButton" href="#" class="button-2 is-icon contribution w-inline-block"><div class="button-text"><div class="text-block-copy">Reveal All Levels</div></div></a></div></div>`
     levelsPepesTable.appendChild(showMoreLevelsButtonElement)
 }
@@ -136,8 +137,8 @@ const showMoreLevelsButton = document.getElementById('showmoreLevelsButton');
 
 // add a click event listener to the "Show More" button
 showMoreLevelsButton.addEventListener("click", () => {
-    loadPepesTableLevels(levelsData.slice(3))
-    showMoreLevelsButton.style.display = 'none'
+    loadPepesTableLevels(levelsData.slice(10))
+    document.getElementById('showmoreLevelsButtonWrapper').style.display = 'none'
 })
 
 // End of Level Details
