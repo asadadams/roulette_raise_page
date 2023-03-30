@@ -1,4 +1,3 @@
-// LeaderBoardData
 const leaderboardData = [
     { rank: 1, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 5000 },
     { rank: 2, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 4000 },
@@ -18,132 +17,165 @@ const leaderboardData = [
     { rank: 126, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 95 },
 ];
 
+
 const leaderBoardTable = document.querySelector('[datasource="leaderboard-table"]');
-leaderboardData.slice(0, 3).forEach((entry, index) => {
-    let rankElement = ''
-    let address = ''
 
-    if (index == 0) rankElement = `<div class="table9_column-content"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/64201c51cc09c983c5c38739_Pepe%20First.png" loading="lazy" alt="" class="leaderboard_image">
-            </div>`
-    if (index == 1) rankElement = `<div class="table9_column-content"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/64201c50885ad9a63405ac90_Pepe%20Second.png" loading="lazy" alt="" class="leaderboard_image">
-            </div>`
-    if (index == 2) rankElement = `<div class="table9_column-content"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/64201c50a2bd1e700e469ca2_Pepe%20Third.png" loading="lazy" alt="" class="leaderboard_image">
-            </div>`
+function loadLeaderBoardData(data) {
+    data.forEach((entry, index) => {
+        let rank = index + 1
+
+        //Creating elements
+        let rankElement = ''
+        let airDropElement = ''
+        let entryElement = document.createElement('div');
+        let addressElement = document.createElement('div')
+        let amountElement = document.createElement('div')
+
+        // Assigning attributes to elements
+        entryElement.setAttribute('class', 'table_item colour leaderboard-entry')
+        entryElement.setAttribute('role', 'row')
+        addressElement.setAttribute('fs-cmssort-type', 'date');
+        addressElement.setAttribute('fs-cmssort-field', 'IDENTIFIER');
+        amountElement.setAttribute('fs-cmssort-type', 'date');
+        amountElement.setAttribute('fs-cmssort-field', 'IDENTIFIER');
+
+        // addressElement.innerHTML = `${entry.address.substring(0, 4)}.....${entry.address.slice(-4)}`
+        amountElement.innerHTML = `${entry.amount}`
+
+        //Applying background colour class to all even entries
+        if (index % 2 === 0) {
+            entryElement.classList.add("anti");
+        }
 
 
-    const entryElement = document.createElement('div');
-    entryElement.setAttribute('class', 'table_item leader-entry')
-    entryElement.setAttribute('role', 'row')
+        if (user.address === entry.address) {
+            addressElement.innerHTML = "This is You!"
+        } else {
+            addressElement.innerHTML = `${entry.address.substring(0, 4)}.....${entry.address.slice(-4)}`
+        }
 
-    //Applying background colour class to all even entries
-    if (index % 2 !== 1) {
-        entryElement.classList.add("colour");
-    }
+        if (entry.rank <= 3) {
+            if (entry.rank == 1) rankElement = `<div class="table9_column-content"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/64201c51cc09c983c5c38739_Pepe%20First.png" loading="lazy" alt="" class="leaderboard_image">
+                </div>`
+            if (entry.rank == 2) {
+                rankElement = `<div class="table9_column-content"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/64201c50885ad9a63405ac90_Pepe%20Second.png" loading="lazy" alt="" class="leaderboard_image">
+                </div>`
+                entryElement.classList.remove('colour')
+            }
+            if (entry.rank == 3) rankElement = `<div class="table9_column-content"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/64201c50a2bd1e700e469ca2_Pepe%20Third.png" loading="lazy" alt="" class="leaderboard_image">
+                </div>`
 
-    if (user.address === entry.address) {
-        address = "This is You!"
-    } else {
-        address = `${entry.address.substring(0, 4)}.....${entry.address.slice(-4)}`
-    }
+            addressElement.setAttribute('class', 'text-leaderboard');
+            amountElement.setAttribute('class', 'text-leaderboard');
+            airDropElement = `<img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/64201b987894bf1462226062_Fill%2018.png" loading="lazy" alt="" class="airdrop-check">`;
+        } else if (entry.rank > 3 && entry.rank <= 100) {
+            rankElement = `<div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-leaderboard-regular rank">#${entry.rank}</div>`
+            addressElement.setAttribute('class', 'text-leaderboard-regular');
+            amountElement.setAttribute('class', 'text-leaderboard-regular');
+            airDropElement = `<img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/642041dd3e934451560f38be_22%20Check.png" loading="lazy" alt="" class="airdrop-check">`
+            entryElement.classList.remove('colour')
+        } else {
+            rankElement = `<div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-leaderboard-regular rank">#${entry.rank}</div>`
+            addressElement.setAttribute('class', 'text-leaderboard-regular red');
+            amountElement.setAttribute('class', 'text-leaderboard red');
+            airDropElement = `<img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/6420439b7894bf2b49255cb8_Wrong.png" loading="lazy" alt="" class="airdrop-wrong">`
+            entryElement.classList.remove('colour')
+        }
 
-    entryElement.innerHTML = `
-        <div table-column="rank" role="cell" class="table9_column is-width-small rank">
-           ${rankElement}
-        </div>
-        <div table-column="address" role="cell" class="table9_column is-width-large wide">
-            <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-leaderboard">${address}</div>
-        </div>
-        <div table-column="" role="cell" class="table9_column is-width-large leaderboard">
-            <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-leaderboard">${entry.amount}</div>
-        </div>
-        <div table-column="airdrop" role="cell" class="table9_column is-width-large airdrop"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/64201b987894bf1462226062_Fill%2018.png" loading="lazy" alt="" class="airdrop-check"></div>
-    `;
-    leaderBoardTable.appendChild(entryElement)
-});
+
+        entryElement.innerHTML = `
+            <div table-column="rank" role="cell" class="table9_column is-width-small rank">
+               ${rankElement}
+            </div>
+            <div table-column="address" role="cell" class="table9_column is-width-large wide">
+               ${addressElement.outerHTML}
+            </div>
+            <div table-column="" role="cell" class="table9_column is-width-large leaderboard">
+                ${amountElement.outerHTML}
+            </div>
+            <div table-column="airdrop" role="cell" class="table9_column is-width-large airdrop">
+               ${airDropElement}
+            </div>
+        `;
+
+        leaderboardData.slice(96, 99).forEach((entry, index) => {
+            leaderBoardTable.appendChild(entryElement)
+        })
+
+
+        // Middle elment 
+        let startIndex = 6
+        let endIndex = 10
+        if (leaderboardData.length > 100) {
+            startIndex = 96
+            endIndex = 99
+        }
+        leaderboardData.slice(startIndex, endIndex).forEach((entry, index) => {
+            leaderBoardTable.appendChild(entryElement)
+        })
+
+    });
+}
+
+
+
+//load first 3 entries
+loadLeaderBoardData(leaderboardData.slice(0, 3))
+
 
 //Appening extra elements to page , element with dots . 
 const entryExtraElement = document.createElement('div');
-entryExtraElement.classList.add('table_item', 'extra');
+entryExtraElement.classList.add('table_item', 'extra', 'leaderboard-entry');
 entryExtraElement.innerHTML = `<div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-leaderboard-regular extra">.</div>`
 leaderBoardTable.appendChild(entryExtraElement);
 leaderBoardTable.appendChild(entryExtraElement.cloneNode(true));
 
 
-// Middle elment 
 let startIndex = 6
-let endIndex = 10
+let endIndex = 9
 if (leaderboardData.length > 100) {
     startIndex = 96
     endIndex = 99
 }
-leaderboardData.slice(startIndex, endIndex).forEach((entry, index) => {
-    let address = ''
 
-    const entryElement = document.createElement('div');
-    entryElement.setAttribute('class', 'table_item leader-entry')
-    entryElement.setAttribute('role', 'row')
+//Loading middle entries
+loadLeaderBoardData(leaderboardData.slice(startIndex, endIndex))
 
-    //Applying background colour class to all even entries
-    if (index % 2 === 0) {
-        entryElement.classList.add("anti");
+
+// Loading last entries
+loadLeaderBoardData(leaderboardData.slice(100, 104))
+
+
+function removeAllEntries() {
+    // Get all the elements with the specific class name
+    const elementsToRemove = document.querySelectorAll('.leaderboard-entry');
+
+    // Loop through the selected elements and remove them one by one
+    for (let i = 0; i < elementsToRemove.length; i++) {
+        elementsToRemove[i].remove();
     }
-
-    if (user.address === entry.address) {
-        address = "This is You!"
-    } else {
-        address = `${entry.address.substring(0, 4)}.....${entry.address.slice(-4)}`
-    }
-
-    entryElement.innerHTML = `
-        <div role="cell" class="table9_column is-width-small rank">
-            <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-leaderboard-regular rank">#${startIndex++}</div>
-        </div>
-        <div role="cell" class="table9_column is-width-large wide">
-            <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-leaderboard-regular">${address}</div>
-        </div>
-        <div role="cell" class="table9_column is-width-large leaderboard">
-            <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-leaderboard-regular">${entry.amount}</div>
-        </div>
-        <div role="cell" class="table9_column is-width-large airdrop"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/642041dd3e934451560f38be_22%20Check.png" loading="lazy" alt="" class="airdrop-check"></div>
-    `;
-
-    leaderBoardTable.appendChild(entryElement)
-})
+}
 
 
 
-//Last elments
-leaderboardData.slice(96, 99).forEach((entry, index) => {
-    let rank = index + 1
-    let address = ''
-    const entryElement = document.createElement('div');
-    entryElement.setAttribute('class', 'table_item leader-entry')
-    entryElement.setAttribute('role', 'row')
+//Appending show more button when data is more than 120
+if (leaderboardData.length > 120) {
+    let leaderBoardButtons = document.getElementById('leaderBoardButtons')
+    let showTop120ContributorsButton = document.createElement('div');
+    showTop120ContributorsButton.innerHTML = `<a href="#" id='showmore' class="button-2 is-icon contribution w-inline-block"><div class="button-text"><div class="text-block-copy">See Top 120 Contributooors</div></div></a>`
+    leaderBoardButtons.appendChild(showTop120ContributorsButton)
 
-    //Applying background colour class to all even entries
-    if (index % 2 === 0) {
-        entryElement.classList.add("anti");
-    }
 
-    if (user.address === entry.address) {
-        address = "This is You!"
-    } else {
-        address = `${entry.address.substring(0, 4)}.....${entry.address.slice(-4)}`
-    }
+    // Loading the rest levels when shomore levels button is clicked
+    const showmoreButton = document.getElementById('showmore');
 
-    entryElement.innerHTML = `
-    <div role="cell" class="table9_column is-width-small rank">
-        <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-leaderboard-regular rank red">#${rank}</div>
-    </div>
-    <div role="cell" class="table9_column is-width-large wide">
-        <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-leaderboard-regular red">${address}</div>
-    </div>
-    <div role="cell" class="table9_column is-width-large leaderboard">
-        <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-leaderboard-regular red">${entry.amount}</div>
-    </div>
-    <div role="cell" class="table9_column is-width-large airdrop"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/6420439b7894bf2b49255cb8_Wrong.png" loading="lazy" alt="" class="airdrop-wrong"></div>
-    `;
+    // add a click event listener to the "Show More" button
+    showmoreButton.addEventListener("click", () => {
+        removeAllEntries()
+        loadLeaderBoardData(levelsData.slice(0, 120))
+        document.getElementById('showmore').style.display = 'none'
+    })
 
-    leaderBoardTable.appendChild(entryElement)
-})
-// End of LeaderBoardData
+}
+
+
