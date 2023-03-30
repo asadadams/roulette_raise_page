@@ -1,3 +1,17 @@
+
+<!-- //     remember to add the cdn below to the webflow site -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+        type="application/javascript"></script>
+<script>
 var provider = null;
 var signer = null;
 var current_account = '';
@@ -90,3 +104,16 @@ async function getBalance(){
     console.log(formattedBalance)
     return formattedBalance;
 }
+
+</script>
+
+</head>
+<body>
+    <button onclick="connectWallet()">Connect</button>
+    <button onclick="disconnect()">disconnect</button>
+    <button onclick="getBalance()">balance</button>
+</body>
+</html>
+
+
+
