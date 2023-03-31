@@ -3,7 +3,10 @@
 
 //also the ethers library has to be imported already
 
-const {contract} = window.roulette;
+const all_contracts = window.roulette;
+//console.log("ALL_CONTRACTS::",all_contracts)
+const pegcontract = all_contracts.contract
+
 
 async function getContributions(){
 //lets loop through so that we can get contributions for all milestones
@@ -13,13 +16,15 @@ try {
     for(let i=1;i<10;i++){
         //make call to the contract function to get all contributions
         try {
-            const data = await contract.getAllUsersPerMilestone(i)
+            const data = await pegcontract.getAllUsersPerMilestone(i)
             contributions.push(data)
             console.log(data);
         } catch (error) {
             console.log(error);
         }
     }
+
+    return contributions;
     
 } catch (error) {
     console.log(error)

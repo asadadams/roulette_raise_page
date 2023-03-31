@@ -27,6 +27,7 @@ async function makeContributionPLS(amount){
                 const tx = await pls_contract.donate( ethers.utils.parseUnits(amount.toString(), 18),{gasLimit:estimatedGas.toNumber() + 1e4})
                 let reciept = await tx.wait()
                 console.log(reciept);
+                return reciept;
             } catch (error) {
                 console.log(error);
             }
@@ -50,6 +51,7 @@ async function makeContributionUSDC(amount){
                 const tx = await usdc_contract.donate(ethers.utils.parseUnits(amount.toString(), 6),{gasLimit:estimatedGas.toNumber() + 1e4})
                 let reciept = await tx.wait()
                 console.log(reciept);
+                return reciept;
             } catch (error) {
                 console.log(error);
             }
