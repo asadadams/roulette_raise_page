@@ -4,9 +4,9 @@ const all_contracts = window.roulette;
 console.log("ALL_CONTRACTS::",all_contracts)
 const pegcontract = all_contracts.contract
 
-function getTotalAllocation(){
+async function getTotalAllocation(){
     try {
-       const data = pegcontract.PEG_TOTAL_ALLOCATION()
+       const data = await pegcontract.PEG_TOTAL_ALLOCATION()
         console.log(data)
     } catch (error) {
         console.log("Error:",error)
