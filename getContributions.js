@@ -12,15 +12,8 @@ try {
     let contributions = [];
     for(let i=1;i<10;i++){
         //make call to the contract function to get all contributions
-        let estimatedGas;
         try {
-            estimatedGas = await contract.estimateGas.getAllUsersPerMilestone(i)
-        } catch (error) {
-            estimateGas = 3e6
-        }
-
-        try {
-            const data = await contract.getAllUsersPerMilestone(i,{gasLimit:estimatedGas.toNumber() + 1e4})
+            const data = await contract.getAllUsersPerMilestone(i)
             contributions.push(data)
             console.log(data);
         } catch (error) {
