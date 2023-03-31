@@ -6,11 +6,8 @@ const pegcontract = all_contracts.contract
 
 function getTotalAllocation(){
     try {
-        pegcontract.PEG_TOTAL_ALLOCATION
-        .then((data)=>{
-            console.log(data)
-        })
-     
+       const data = pegcontract.PEG_TOTAL_ALLOCATION
+        console.log(data)
     } catch (error) {
         console.log("Error:",error)
     }
