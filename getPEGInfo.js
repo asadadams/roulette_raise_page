@@ -1,19 +1,24 @@
 
 
-const {contract} = window.roulette;
+const all_contracts = window.roulette;
+console.log("ALL_CONTRACTS::",all_contracts)
+const pegcontract = all_contracts.contract
 
-async function getTotalAllocation(){
+function getTotalAllocation(){
     try {
-        const data = await contract.PEG_TOTAL_ALLOCATION
-        console.log(data)
+        pegcontract.PEG_TOTAL_ALLOCATION
+        .then((data)=>{
+            console.log(data)
+        })
+     
     } catch (error) {
-        console.log(error)
+        console.log("Error:",error)
     }
 }
 
 async function getDistributionPerMilestone(){
     try {
-        const data = await contract.TOTAL_PEG_DISTRIBUTION_PER_MILESTONE
+        const data = await pegcontract.TOTAL_PEG_DISTRIBUTION_PER_MILESTONE
         console.log(data)
     } catch (error) {
         console.log(error)
@@ -22,7 +27,7 @@ async function getDistributionPerMilestone(){
 
 async function getCurrentPLSMilestone(){
     try {
-        const data = await contract.currentPLSMilestone
+        const data = await pegcontract.currentPLSMilestone
         console.log(data)
     } catch (error) {
         console.log(error)
@@ -31,7 +36,7 @@ async function getCurrentPLSMilestone(){
 
 async function getCurrentPLSMilestone(){
     try {
-        const data = await contract.currentUSDCMilestone
+        const data = await pegcontract.currentUSDCMilestone
         console.log(data)
     } catch (error) {
         console.log(error)
