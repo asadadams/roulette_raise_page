@@ -1,448 +1,68 @@
 const data = {
-  topHundredContributors: [
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "9000",
-    },
-    {
-      address: "0x2b2e8d8f1b63e3d7b3e2c6e7be7b1f0c9f9d8c1f",
-      amount: "8750",
-    },
-    {
-      address: "0x2b2e8d1f0c9f9d8c8f1b6e7b3e3d7b3e2c6e7b1f",
-      amount: "8500",
-    },
-    {
-      address: "0x2b1f0c9fd7b9d8c23e2e8d8f1b6e7b3e3c6e7b1f",
-      amount: "8250",
-    },
-    {
-      address: "0x1b6e7b1d8c3e3d7b3ef08ff2e8dc6e792fc92bb1",
-      amount: "8000",
-    },
-    {
-      address: "0x1bb1d8c36ec97e3d7b3f08ff9e2f2b2e8dc6e7b1",
-      amount: "7750",
-    },
-    {
-      address: "0x1b6e7b1d8c3e3d7b3ef08ff92fc6e7b192b2e8dc",
-      amount: "7750",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "7750",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "7000",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "6800",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "6750",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "6555",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "6500",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "5000",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "4800",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "4750",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "4600",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "4125",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "4000",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "3600",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "3500",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "3300",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "3250",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "3150",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "3000",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2750",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2750",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2750",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2750",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2750",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2750",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2750",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2750",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2750",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2700",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2700",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2650",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2650",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2650",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2650",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2650",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2600",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2600",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2555",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2500",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2250",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2250",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2250",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2250",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2250",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2250",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2250",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1000000000000000000000",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2150",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2150",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2150",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2150",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2000",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2000",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2000",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2000",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2000",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2000",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2000",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2000",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "2000",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1800",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1800",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1800",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1800",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1800",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1800",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1750",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1650",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1650",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1650",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1650",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1500",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1250",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1250",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1250",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1250",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1150",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1110",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1000",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1000",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1000",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "1000",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "950",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "900",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "900",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "900",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "900",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "900",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "800",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "800",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "800",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "750",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "600",
-    },
-    {
-      address: "0x2b2e8d8f1b6e7b1f0c9f9d8c3e3d7b3e2c6e7b1f",
-      amount: "600",
-    },
-  ],
-  levelsDetails: {
-    1: {
-      maxRaise: 1000000,
-      ratio: 10000,
-      pegPerLevel: [25, 25],
-      plsContribution: 250000,
-      pricePerPls: 0.025,
-      usdcContribution: 750000,
-      pricePerEth: 0.0348,
-      filled: 100,
-    },
-    2: {
-      maxRaise: 1000000,
-      ratio: 10000,
-      pegPerLevel: [25, 25],
-      plsContribution: 250000,
-      pricePerPls: 0.025,
-      usdcContribution: 750000,
-      pricePerEth: 0.0348,
-      filled: 100,
-    },
-    3: {
-      maxRaise: 1000000,
-      ratio: 10000,
-      pegPerLevel: [25, 25],
-      plsContribution: 250000,
-      pricePerPls: 0.025,
-      usdcContribution: 750000,
-      pricePerEth: 0.0348,
-      filled: 100,
-    },
-    4: {
-      maxRaise: 1000000,
-      ratio: 10000,
-      pegPerLevel: [25, 25],
-      plsContribution: 250000,
-      pricePerPls: 0.025,
-      usdcContribution: 750000,
-      pricePerEth: 0.0348,
-      filled: 100,
-    },
-  },
+  leaderboardData:[
+    { rank: 1, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 5000 },
+    { rank: 2, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 4000 },
+    { rank: 3, address: "0x1234567890abcdef1234567890abcdef1234567dd", amount: 3000 },
+    { rank: 4, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 2000 },
+    { rank: 5, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 1000 },
+    { rank: 6, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 900 },
+    { rank: 7, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 800 },
+    { rank: 8, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 700 },
+    { rank: 9, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 600 },
+    { rank: 10, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 500 },
+    { rank: 97, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 100 },
+    { rank: 98, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 99 },
+    { rank: 99, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 98 },
+    { rank: 100, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 97 },
+    { rank: 125, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 96 },
+    { rank: 126, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 95 },
+],
+  levelsData:[
+    {
+        "level": 1,
+        "max_raise": "1,000,000",
+        "ratio": "25",
+        "peg_per_level": "10,000",
+        "pls_contribute": "250,000",
+        "price_per_pls": "0.025",
+        "usdc_contribute": "750,000",
+        "price_per_eth": "0.0348",
+        "filled": 100
+    },
+    {
+        "level": 2,
+        "max_raise": "2,000,000",
+        "ratio": "25",
+        "peg_per_level": "20,000",
+        "pls_contribute": "500,000",
+        "price_per_pls": "0.025",
+        "usdc_contribute": "1,500,000",
+        "price_per_eth": "0.0348",
+        "filled": 100
+    },
+    {
+        "level": 3,
+        "max_raise": "3,000,000",
+        "ratio": "25",
+        "peg_per_level": "30,000",
+        "pls_contribute": "750,000",
+        "price_per_pls": "0.025",
+        "usdc_contribute": "2,250,000",
+        "price_per_eth": "0.0348",
+        "filled": 25
+    },
+    {
+        "level": 4,
+        "max_raise": "4,000,000",
+        "ratio": "25",
+        "peg_per_level": "40,000",
+        "pls_contribute": "1,000,000",
+        "price_per_pls": "0.025",
+        "usdc_contribute": "3,000,000",
+        "price_per_eth": "0.0348",
+        "filled": 0
+    }
+],
   yourTotalContributions: {
     pls: 210000,
     usdc: 0,
@@ -462,7 +82,20 @@ const data = {
     pegPrice: 0.8,
     marketCap: 1200000,
     fdv: 2210000
-  }
+  },
+
+  user:{
+    address:"0x1234567890abcdef1234567890abcdef1234567dd",
+    contributed_pls: 210000,
+    contributed_usdc: 700,
+    contributed_amount: 28000,
+    total: 112800,
+    contributed_peg:0.65,
+    pegPrice:1800
+  },
+  
+  
+
 };
 
 module.exports = data;
