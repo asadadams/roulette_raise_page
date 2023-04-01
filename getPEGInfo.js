@@ -1,8 +1,8 @@
 
 
-const all_contracts = window.roulette;
+//const all_contracts = window.roulette;
 console.log("ALL_CONTRACTS::",all_contracts)
-const pegcontract = all_contracts.contract
+//const pegcontract = all_contracts.contract
 
 async function getTotalAllocation(){
     try {
@@ -43,3 +43,31 @@ async function getCurrentUSDCMilestone(){
         console.log(error)
     }
 }
+
+async function getUserPerMileStone(milestone){
+    //lets get user address
+    let address = pegcontract.provider.getAddress();
+
+    try {
+        let user = await pegcontract.getUserPerMileStone(milestone,address)
+        return user;
+    } catch (error) {
+        console.log(user)
+    }
+
+}
+
+
+async function getTotalUserPEGAllocation(){
+    //lets get user address
+    let address = pegcontract.provider.getAddress();
+
+    try {
+        let alloc = await pegcontract.totalUserPegAllocation(address)
+        return alloc;
+    } catch (error) {
+        console.log(user)
+    }
+
+}
+
