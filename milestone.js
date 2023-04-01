@@ -1,3 +1,5 @@
+
+const levelsData = fetchLevelData()
 // Level Details
 const levelsTable = document.querySelector('[datasource="levels-table"]');
 levelsData.slice(0, 10).forEach((entry, index) => {
