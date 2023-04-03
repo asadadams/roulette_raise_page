@@ -1,5 +1,8 @@
 
 const levelsData = fetchLevelData()
+
+console.log('levels data::', levelsData)
+
 // Level Details
 const levelsTable = document.querySelector('[datasource="levels-table"]');
 levelsData.slice(0, 10).forEach((entry, index) => {
@@ -20,32 +23,45 @@ levelsData.slice(0, 10).forEach((entry, index) => {
     }
 
     entryElement.innerHTML = `
-            <div role="cell" class="table9_column is-width-small">
+            <div role="cell" class="table9_column is-width-small-x2">
                ${levelElement}
             </div>
             <div role="cell" class="table9_column is-width-large">
-                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER">${entry.max_raise}</div>
+                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER">$${entry.max_raise.toLocaleString()}</div>
             </div>
             <div role="cell" class="table9_column is-width-large">
-                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-small">${entry.ratio} $PLS</div>
-                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-small">${entry.ratio} $USDC</div>
+                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-small">$${(0.25 * entry.max_raise).toLocaleString()} $PLS</div>
+                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-small">$${(0.75 * entry.ratio).toLocaleString()} $USDC</div>
             </div>
             <div role="cell" class="table9_column is-width-large">
                 <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER">${entry.peg_per_level}</div>
             </div>
+            
             <div role="cell" class="table9_column is-width-large">
-                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-normal">${entry.pls_contribute} $PLS</div>
-                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-small _1">$${entry.pls_contribute}</div>
+                <div class="contribute-table-div">
+                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-normal">${entry.pls_contribute} </div>
+                <img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/642aa5061c682780a92fd247_Group%20427320201.png" loading="lazy" alt="" class="icon">
+                </div>
+                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-small _1">$${entry.pls_contribute.toLocaleString()}</div>
             </div>
+
+
             <div role="cell" class="table9_column is-width-large">
                 <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER">$${entry.price_per_pls}</div>
             </div>
+
+
             <div role="cell" class="table9_column is-width-large">
-                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-normal">${entry.usdc_contribute} $USDC</div>
+                <div class="contribute-table-div">
+                    <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-normal">${entry.total_usdc_contribute} </div>
+                    <img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/642aaa0edcf1074770fd060b_%24PLS.png" loading="lazy" alt="" class="icon">
+                </div>
                 <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-small _1">$${entry.usdc_contribute}</div>
             </div>
+
+
             <div role="cell" class="table9_column is-width-large">
-                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER">$${entry.price_per_eth}</div>
+                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER">$${entry.price_per_eth.toLocaleString()}</div>
             </div>
             <div role="cell" class="table9_column is-width-small">
                 <div fs-cmssort-field="IDENTIFIER" class="text-block-5">${entry.filled}%</div>

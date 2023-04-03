@@ -94,7 +94,7 @@ function loadLeaderBoardData(data) {
             <div table-column="address" role="cell" class="table9_column is-width-large wide">
                ${addressElement.outerHTML}
             </div>
-            <div table-column="" role="cell" class="table9_column is-width-large leaderboard">
+            <div table-column="" role="cell" class="table9_column is-width-large leaderboard usd">
                 ${amountElement.outerHTML}
             </div>
             <div table-column="airdrop" role="cell" class="table9_column is-width-large airdrop">
@@ -130,9 +130,20 @@ loadLeaderBoardData(leaderboardData.slice(0, 3))
 //Appening extra elements to page , element with dots . 
 const entryExtraElement = document.createElement('div');
 entryExtraElement.classList.add('table_item', 'extra', 'leaderboard-entry');
-entryExtraElement.innerHTML = `<div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-leaderboard-regular extra">.</div>`
+entryExtraElement.setAttribute('role', 'row')
+entryExtraElement.innerHTML = `
+<div role="row" class="table_item extra">
+   <div role="cell" class="table9_column is-width-small extra">
+      <div class="dot-div">
+         <div class="dot"></div>
+         <div class="dot"></div>
+      </div>
+      <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-leaderboard-regular extra">.</div>
+      <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-leaderboard-regular extra">.</div>
+   </div>
+</div>
+`
 leaderBoardTable.appendChild(entryExtraElement);
-leaderBoardTable.appendChild(entryExtraElement.cloneNode(true));
 
 
 let startIndex = 6
