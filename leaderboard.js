@@ -19,8 +19,7 @@
 
 // const{fetchTopContributors} = require('./fetchData');
 
-const leaderboardData = await fetchTopContributors();
-
+const leaderboardData = fetchTopContributors()
 console.log("leader board:", leaderboardData)
 
 const leaderBoardTable = document.querySelector('[datasource="leaderboard-table"]');
