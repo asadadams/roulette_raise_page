@@ -3,6 +3,16 @@
 const _contracts = window.roulette;
 console.log("ALL_CONTRACTS::",_contracts)
 
+const erc20ABI = [
+    'function balanceOf(address account) view returns (uint256)',
+    'function transfer(address recipient, uint256 amount) returns (bool)',
+    'function allowance(address owner, address spender) view returns (uint256)',
+    'function approve(address spender, uint256 amount) returns (bool)',
+    'function transferFrom(address sender, address recipient, uint256 amount) returns (bool)',
+    'event Transfer(address indexed from, address indexed to, uint256 value)',
+    'event Approval(address indexed owner, address indexed spender, uint256 value)'
+  ];
+
 
 //returns the user details 
 // struct User {
@@ -67,12 +77,66 @@ async function getMilestone(milestone){
 async function getUsersPerMileStone(milestone){
     //lets get user address
     let address = _contracts.address
+    console.log(address)
     try {
         let user = await contract.users(milestone,address)
+        console.log("USER::",user)
         return user;
     } catch (error) {
-        console.log(user)
+        console.log(error)
     }
 
+}
+
+async function approveUSDC(){
+    try {
+        let usdc_address = '0xff970a61a04b1ca14834a43f5de4533ebddb5cc8'
+        const tokenContract = new ethers.Contract(usdc_address, erc20ABI, _contracts.signer);
+        const tx = await tokenContract.approve('0xb6Db8253f663BF7cE5b0F1AA4551f6D1dFc6c806', ethers.constants.MaxUint256)
+        const receipt = await tx.wait();
+        console.log('Approval successful:', receipt);
+    } catch (error) {
+        console.log(error)
+    }
+  
+}
+
+async function approvePLS(){
+    try {
+        let pls_address = '0x51318B7D00db7ACc4026C88c3952B66278B6A67F'
+        const tokenContract = new ethers.Contract(pls_address, erc20ABI, _contracts.signer);
+        const tx = await tokenContract.approve('0xb6Db8253f663BF7cE5b0F1AA4551f6D1dFc6c806', ethers.constants.MaxUint256)
+        const receipt = await tx.wait();
+        console.log('Approval successful:', receipt);
+    } catch (error) {
+        console.log(error)
+    }
+  
+}
+
+async function getAllowancePLS(){
+    try {
+        let pls_address = '0x51318B7D00db7ACc4026C88c3952B66278B6A67F'
+        const tokenContract = new ethers.Contract(pls_address, erc20ABI, _contracts.signer);
+        const allowance = await tokenContract.allowance(_contracts.address, '0xb6Db8253f663BF7cE5b0F1AA4551f6D1dFc6c806');
+        if(ethers.utils.parseUnits('10',18).gt(allowance)){
+            approvePLS()
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+async function getAllowanceUSDC(){
+    try {
+        let usdc_address = '0xff970a61a04b1ca14834a43f5de4533ebddb5cc8'
+        const tokenContract = new ethers.Contract(usdc_address, erc20ABI, _contracts.signer);
+        const allowance = await tokenContract.allowance(_contracts.address, '0xb6Db8253f663BF7cE5b0F1AA4551f6D1dFc6c806');
+        if(ethers.utils.parseUnits('10',6).gt(allowance)){
+            approveUSDC()
+        }
+    } catch (error) {
+        console.log(error)
+    }
 }
 
