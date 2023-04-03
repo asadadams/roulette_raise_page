@@ -31,7 +31,7 @@ levelsData.slice(0, 10).forEach((entry, index) => {
             </div>
             <div role="cell" class="table9_column is-width-large">
                 <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-small">$${(0.25 * entry.max_raise).toLocaleString()} $PLS</div>
-                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-small">$${(0.75 * entry.ratio).toLocaleString()} $USDC</div>
+                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-small">$${(0.75 * entry.max_raise).toLocaleString()} $USDC</div>
             </div>
             <div role="cell" class="table9_column is-width-large">
                 <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER">${entry.peg_per_level}</div>
