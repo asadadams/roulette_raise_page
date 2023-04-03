@@ -24,7 +24,7 @@ async function makeContributionPLS(amount){
             }
 
             try {
-                const tx = await contract.donateUSDC( ethers.utils.parseUnits(amount.toString(), 18),{gasLimit:estimatedGas.toNumber() + 1e4})
+                const tx = await contract.donatePLS( ethers.utils.parseUnits(amount.toString(), 18),{gasLimit:estimatedGas.toNumber() + 1e4})
                 let reciept = await tx.wait()
                 console.log(reciept);
                 return reciept;
@@ -42,13 +42,13 @@ async function makeContributionUSDC(amount){
     
             let estimatedGas;
             try {
-                estimatedGas = await usdc_contract.estimateGas.donate(ethers.utils.parseUnits(amount.toString(), 6))
+                estimatedGas = await contract.estimateGas.donateUSDC(ethers.utils.parseUnits(amount.toString(), 6))
             } catch (error) {
                 estimateGas = 3e6
             }
 
             try {
-                const tx = await usdc_contract.donate(ethers.utils.parseUnits(amount.toString(), 6),{gasLimit:estimatedGas.toNumber() + 1e4})
+                const tx = await contract.donateUSDC(ethers.utils.parseUnits(amount.toString(), 6),{gasLimit:estimatedGas.toNumber() + 1e4})
                 let reciept = await tx.wait()
                 console.log(reciept);
                 return reciept;
