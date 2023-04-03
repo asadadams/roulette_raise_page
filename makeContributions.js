@@ -7,7 +7,7 @@
 //this script is for making contributions
 
 //const {pls_contract,usdc_contract} = window.roulette;
-//const all_contracts = window.roulette;
+const all_contracts = window.roulette;
 //console.log("ALL_CONTRACTS::",all_contracts)
 const contract = all_contracts.contract
 
