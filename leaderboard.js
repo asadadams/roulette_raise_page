@@ -19,7 +19,7 @@
 
 // const{fetchTopContributors} = require('./fetchData');
 
-const leaderboardData = fetchTopContributors()
+const leaderboardData = allUsersInMileStone()
 console.log("leader board:", leaderboardData)
 
 const leaderBoardTable = document.querySelector('[datasource="leaderboard-table"]');
@@ -44,7 +44,7 @@ function loadLeaderBoardData(data) {
         amountElement.setAttribute('fs-cmssort-field', 'IDENTIFIER');
 
         // addressElement.innerHTML = `${entry.address.substring(0, 4)}.....${entry.address.slice(-4)}`
-        amountElement.innerHTML = `${entry.amount}`
+        amountElement.innerHTML = `${entry.contributed_amount}`
 
         //Applying background colour class to all even entries
         if (index % 2 === 0) {
@@ -58,28 +58,28 @@ function loadLeaderBoardData(data) {
             addressElement.innerHTML = `${entry.address.substring(0, 4)}.....${entry.address.slice(-4)}`
         }
 
-        if (entry.rank <= 3) {
-            if (entry.rank == 1) rankElement = `<div class="table9_column-content"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/64201c51cc09c983c5c38739_Pepe%20First.png" loading="lazy" alt="" class="leaderboard_image">
+        if (rank <= 3) {
+            if (rank == 1) rankElement = `<div class="table9_column-content"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/64201c51cc09c983c5c38739_Pepe%20First.png" loading="lazy" alt="" class="leaderboard_image">
                 </div>`
-            if (entry.rank == 2) {
+            if (rank == 2) {
                 rankElement = `<div class="table9_column-content"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/64201c50885ad9a63405ac90_Pepe%20Second.png" loading="lazy" alt="" class="leaderboard_image">
                 </div>`
                 entryElement.classList.remove('colour')
             }
-            if (entry.rank == 3) rankElement = `<div class="table9_column-content"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/64201c50a2bd1e700e469ca2_Pepe%20Third.png" loading="lazy" alt="" class="leaderboard_image">
+            if (rank == 3) rankElement = `<div class="table9_column-content"><img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/64201c50a2bd1e700e469ca2_Pepe%20Third.png" loading="lazy" alt="" class="leaderboard_image">
                 </div>`
 
             addressElement.setAttribute('class', 'text-leaderboard');
             amountElement.setAttribute('class', 'text-leaderboard');
             airDropElement = `<img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/64201b987894bf1462226062_Fill%2018.png" loading="lazy" alt="" class="airdrop-check">`;
-        } else if (entry.rank > 3 && entry.rank <= 100) {
-            rankElement = `<div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-leaderboard-regular rank">#${entry.rank}</div>`
+        } else if (rank > 3 && rank <= 100) {
+            rankElement = `<div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-leaderboard-regular rank">#${rank}</div>`
             addressElement.setAttribute('class', 'text-leaderboard-regular');
             amountElement.setAttribute('class', 'text-leaderboard-regular');
             airDropElement = `<img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/642041dd3e934451560f38be_22%20Check.png" loading="lazy" alt="" class="airdrop-check">`
             entryElement.classList.remove('colour')
         } else {
-            rankElement = `<div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-leaderboard-regular rank">#${entry.rank}</div>`
+            rankElement = `<div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-leaderboard-regular rank">#${rank}</div>`
             addressElement.setAttribute('class', 'text-leaderboard-regular red');
             amountElement.setAttribute('class', 'text-leaderboard red');
             airDropElement = `<img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/6420439b7894bf2b49255cb8_Wrong.png" loading="lazy" alt="" class="airdrop-wrong">`
