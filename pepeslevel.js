@@ -35,6 +35,9 @@ function loadPepesTableLevels(data) {
          </div>`
       }
 
+      var plsPercentage = (entry.usdcOfPlsRaised.toNumber() / (0.25 * entry.targetAmount.toNumber())) * 100
+      var usdcPercentage = (entry.usdcRaised.toNumber() / (0.75 * entry.targetAmount.toNumber())) * 100
+
       entryElement.innerHTML = `
         <div class="top">
            <div class="left">
@@ -42,7 +45,7 @@ function loadPepesTableLevels(data) {
            </div>
            <div class="right">
               <div class="label">
-                 <div class="percent-text">${(entry.usdcOfPlsRaised.toNumber() / (0.25 * entry.targetAmount.toNumber())) * 100}%</div>
+                 <div class="percent-text">${isNaN(plsPercentage) ? 0 : plsPercentage}%</div>
                  <img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/641c86a3849aad0055ed175e_pls.png" loading="lazy" id="w-node-_0f41bdfe-ee9e-b32d-1cfe-34d410bb98b3-5c7ba5ac" alt="" class="image-19">
               </div>
               <div class="bar">
@@ -55,7 +58,7 @@ function loadPepesTableLevels(data) {
               </div>
               <div class="label">
                  <img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/641c30595b995f2307b00772_usd-coin-usdc-logo%203.png" loading="lazy" id="w-node-_86e10863-1a82-a679-4e38-ecd53cc1b75f-5c7ba5ac" alt="" class="image-19">
-                 <div class="percent-text">${(entry.usdcRaised.toNumber() / (0.75 * entry.targetAmount.toNumber())) * 100}%</div>
+                 <div class="percent-text">${isNaN(usdcPercentage) ? 0 : usdcPercentage}%</div>
               </div>
            </div>
         </div>
