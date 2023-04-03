@@ -1,7 +1,7 @@
 
 
-//const all_contracts = window.roulette;
-console.log("ALL_CONTRACTS::",all_contracts)
+const _contracts = window.roulette;
+console.log("ALL_CONTRACTS::",_contracts)
 
 
 //returns the user details 
@@ -14,7 +14,8 @@ console.log("ALL_CONTRACTS::",all_contracts)
 async function getUserDetails(){
     try {
         //lets get user address
-       let address = contract.provider.getAddress();
+       let address = _contracts.address
+
        const data = await contract.getUserDetails(address)
         console.log(data)
         return data
@@ -28,7 +29,7 @@ async function getCurrentMilestone(){
     try {
         const data = await contract.currentMilestone()
         console.log(data)
-        return data.toNumber();
+        return data
     } catch (error) {
         console.log(error)
     }
@@ -49,7 +50,7 @@ async function getMilestone(milestone){
     try {
         const data = await contract.milestones(milestone)
         console.log(data)
-        return data.toNumber();
+        return data;
     } catch (error) {
         console.log(error)
     }
@@ -65,8 +66,7 @@ async function getMilestone(milestone){
 // }
 async function getUsersPerMileStone(milestone){
     //lets get user address
-    let address = contract.provider.getAddress();
-
+    let address = _contracts.address
     try {
         let user = await contract.users(milestone,address)
         return user;
