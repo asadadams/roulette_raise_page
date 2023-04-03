@@ -1,0 +1,28 @@
+/* all classes are prefixed with smp to prevent clashing with other classes */
+html:has(.namm-show) {
+  overflow: hidden;
+}
+.nam-content-box {
+  position: relative;
+}
+.nam-content-box::before {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(139.46deg, #18adfa 9.3%, #b916ba 85.4%);
+  transform: translate3d(0px, 2px, 0) scale(1.03);
+  filter: blur(7.5px);
+  opacity: var(1);
+  transition: opacity 0.3s;
+  border-radius: inherit;
+}
+
+@media (min-width: 640px) {
+  .nam-content-box {
+    border-radius: 10px;
+  }
+}
