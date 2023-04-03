@@ -1,22 +1,27 @@
-const leaderboardData = [
-    { rank: 1, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 5000 },
-    { rank: 2, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 4000 },
-    { rank: 3, address: "0x1234567890abcdef1234567890abcdef1234567dd", amount: 3000 },
-    { rank: 4, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 2000 },
-    { rank: 5, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 1000 },
-    { rank: 6, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 900 },
-    { rank: 7, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 800 },
-    { rank: 8, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 700 },
-    { rank: 9, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 600 },
-    { rank: 10, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 500 },
-    { rank: 97, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 100 },
-    { rank: 98, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 99 },
-    { rank: 99, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 98 },
-    { rank: 100, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 97 },
-    { rank: 125, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 96 },
-    { rank: 126, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 95 },
-];
+// const leaderboardData = [
+//     { rank: 1, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 5000 },
+//     { rank: 2, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 4000 },
+//     { rank: 3, address: "0x1234567890abcdef1234567890abcdef1234567dd", amount: 3000 },
+//     { rank: 4, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 2000 },
+//     { rank: 5, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 1000 },
+//     { rank: 6, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 900 },
+//     { rank: 7, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 800 },
+//     { rank: 8, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 700 },
+//     { rank: 9, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 600 },
+//     { rank: 10, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 500 },
+//     { rank: 97, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 100 },
+//     { rank: 98, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 99 },
+//     { rank: 99, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 98 },
+//     { rank: 100, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 97 },
+//     { rank: 125, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 96 },
+//     { rank: 126, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 95 },
+// ];
 
+// const{fetchTopContributors} = require('./fetchData');
+
+const leaderboardData = await fetchTopContributors();
+
+console.log("leader board:", leaderboardData)
 
 const leaderBoardTable = document.querySelector('[datasource="leaderboard-table"]');
 
@@ -98,25 +103,25 @@ function loadLeaderBoardData(data) {
             </div>
         `;
 
-        leaderboardData.slice(96, 99).forEach((entry, index) => {
-            leaderBoardTable.appendChild(entryElement)
-        })
+        // leaderboardData.slice(96, 99).forEach((entry, index) => {
+        //     leaderBoardTable.appendChild(entryElement)
+        // })
 
 
-        // Middle elment 
-        let startIndex = 6
-        let endIndex = 10
-        if (leaderboardData.length > 100) {
-            startIndex = 96
-            endIndex = 99
-        }
-        leaderboardData.slice(startIndex, endIndex).forEach((entry, index) => {
-            leaderBoardTable.appendChild(entryElement)
-        })
+        // // Middle elment 
+        // let startIndex = 6
+        // let endIndex = 10
+        // if (leaderboardData.length > 100) {
+        //     startIndex = 96
+        //     endIndex = 99
+        // }
+        // leaderboardData.slice(startIndex, endIndex).forEach((entry, index) => {
+        //     leaderBoardTable.appendChild(entryElement)
+        // })
 
+        leaderBoardTable.appendChild(entryElement)
     });
 }
-
 
 
 //load first 3 entries
@@ -177,5 +182,3 @@ if (leaderboardData.length > 120) {
     })
 
 }
-
-
