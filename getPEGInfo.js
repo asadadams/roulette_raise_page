@@ -28,7 +28,7 @@ async function getUserDetails(){
     try {
         //lets get user address
        //let address = _contracts.address
-
+        console.log(address)
        const data = await main_contract.getUserDetails(address)
         console.log(data)
         return data
@@ -77,12 +77,12 @@ async function getMilestone(milestone){
 //     uint256 usdcOfPlsDonations;
 //     uint256 usdcDonations;
 // }
-async function getUsersPerMileStone(milestone){
+async function getUsersInMileStone(milestone){
     //lets get user address
     //let address = _contracts.address
-    console.log(address)
+    console.log(main_contract)
     try {
-        let user = await main_contract.users(milestone,address)
+        let user = await main_contract.getUsersPerMilestone(milestone)
         console.log("USER::",user)
         return user;
     } catch (error) {
@@ -95,7 +95,7 @@ async function approveUSDC(){
     try {
         let usdc_address = '0xff970a61a04b1ca14834a43f5de4533ebddb5cc8'
         const tokenContract = new ethers.Contract(usdc_address, erc20ABI, signer);
-        const tx = await tokenContract.approve('0xb6Db8253f663BF7cE5b0F1AA4551f6D1dFc6c806', ethers.constants.MaxUint256)
+        const tx = await tokenContract.approve('0x38E56fc4Ca17Ba6230b3A62593cAB91CAB78d043', ethers.constants.MaxUint256)
         const receipt = await tx.wait();
         console.log('Approval successful:', receipt);
     } catch (error) {
@@ -108,7 +108,7 @@ async function approvePLS(){
     try {
         let pls_address = '0x51318B7D00db7ACc4026C88c3952B66278B6A67F'
         const tokenContract = new ethers.Contract(pls_address, erc20ABI, signer);
-        const tx = await tokenContract.approve('0xb6Db8253f663BF7cE5b0F1AA4551f6D1dFc6c806', ethers.constants.MaxUint256)
+        const tx = await tokenContract.approve('0x38E56fc4Ca17Ba6230b3A62593cAB91CAB78d043', ethers.constants.MaxUint256)
         const receipt = await tx.wait();
         console.log('Approval successful:', receipt);
     } catch (error) {
@@ -121,7 +121,7 @@ async function getAllowancePLS(){
     try {
         let pls_address = '0x51318B7D00db7ACc4026C88c3952B66278B6A67F'
         const tokenContract = new ethers.Contract(pls_address, erc20ABI, signer);
-        const allowance = await tokenContract.allowance(address, '0xb6Db8253f663BF7cE5b0F1AA4551f6D1dFc6c806');
+        const allowance = await tokenContract.allowance(address, '0x38E56fc4Ca17Ba6230b3A62593cAB91CAB78d043');
         if(ethers.utils.parseUnits('10',18).gt(allowance)){
             approvePLS()
         }
@@ -134,7 +134,7 @@ async function getAllowanceUSDC(){
     try {
         let usdc_address = '0xff970a61a04b1ca14834a43f5de4533ebddb5cc8'
         const tokenContract = new ethers.Contract(usdc_address, erc20ABI, signer);
-        const allowance = await tokenContract.allowance(address, '0xb6Db8253f663BF7cE5b0F1AA4551f6D1dFc6c806');
+        const allowance = await tokenContract.allowance(address, '0x38E56fc4Ca17Ba6230b3A62593cAB91CAB78d043');
         if(ethers.utils.parseUnits('10',6).gt(allowance)){
             approveUSDC()
         }

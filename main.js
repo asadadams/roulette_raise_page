@@ -145,7 +145,7 @@ function getAllMileStones() {
 
       getMilestone(i).then(function (data) {
         //console.log('current milestone::', data.plsRaised.toNumber())
-        totalTargetAmount += data.targetAmount.toNumber() //! don't use .toNumber(), format with ethers instead to avoid possible overflows with js
+        totalTargetAmount += ethers.utils.formatUnits(data.targetAmount, 6) //! don't use .toNumber(), format with ethers instead to avoid possible overflows with js
         allMileStones.push(data)
       }).catch((err) => {
         console.log('error: ', err)
@@ -184,7 +184,7 @@ window.onload = () => {
   getAllMileStones().then(function () {
 
     setTimeout(function () {
-      allUsersInMileStone = allUsersInMileStone.length ? allUsersInMileStone.sort((a, b) => b.usdcDonations.toNumber() - a.usdcDonations.toNumber()) : null
+      // allUsersInMileStone = allUsersInMileStone.length ? allUsersInMileStone.sort((a, b) => b.usdcDonations.toNumber() - a.usdcDonations.toNumber()) : null
 
       console.log('allUsersInMileStone::', allUsersInMileStone)
       console.log('all milestones::', allMileStones)

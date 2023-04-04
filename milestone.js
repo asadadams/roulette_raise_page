@@ -5,6 +5,9 @@
 const levelsData = allMileStones
 // console.log('milestone data::', levelsData)
 
+console.log('levels data::', levelsData)
+
+// Level DetailsallUsersInMileStone
 const levelsTable = document.querySelector('[datasource="levels-table"]');
 levelsData.slice(0, 10).forEach((entry, index) => {
     let levelElement = ''
