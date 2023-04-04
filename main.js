@@ -106,7 +106,7 @@ approvepls.addEventListener('click',function(){
             
            getMilestone(i).then(function(data){
             //console.log('current milestone::', data.plsRaised.toNumber())
-            totalTargetAmount += data.targetAmount.toNumber()
+            totalTargetAmount += data.targetAmount.toNumber() //! don't use .toNumber(), format with ethers instead to avoid possible overflows with js
             allMileStones.push(data)
            }).catch((err)=>{
             console.log('error: ', err)

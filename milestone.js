@@ -7,7 +7,7 @@ const levelsData = allMileStones
 
 console.log('levels data::', levelsData)
 
-// Level Details
+// Level DetailsallUsersInMileStone
 const levelsTable = document.querySelector('[datasource="levels-table"]');
 levelsData.slice(0, 10).forEach((entry, index) => {
     let levelElement = ''

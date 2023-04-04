@@ -19,6 +19,46 @@
 
 // const{fetchTopContributors} = require('./fetchData');
 
+async function getAllUsers() {
+    const currentMilestone = await main_contract.currentMilestone();
+    let allUsers = {};
+
+    for (const i = 1; i <= currentMilestone; i++){
+        const users = await main_contract.getUsersPerMilestone(i)
+        if (i === 1) {
+            for (const user of users) {
+                allUsers[user.user] = user; /// @notice allUsers[userAddress] = userObject
+                allUsers[user.user].totalDonation = user.user.usdcDonations.add(user.usdcOfPlsDonations)
+            }
+            continue
+        }
+    
+        for (const user of users) {
+            if (user.user in allUsers) {
+                /// @notice expecting the values of the pls donations, usdcDonations ... to be BigNumbers
+                allUsers[user.user].plsDonations = allUsers[user.user].plsDonations.add(user.plsDonations)
+                allUsers[user.user].usdcDonations = allUsers[user.user].usdcDonations.add(user.usdcDonations)
+                allUsers[user.user].usdcOfPlsDonations = allUsers[user.user].usdcOfPlsDonations.add(user.usdcOfPlsDonations)
+                allUsers[user.user].totalDonation = allUsers[user.user].totalDonation.add(user.usdcDonations).add(user.usdcOfPlsDonations)
+            }
+            else {
+                allUsers[user.user] = user;
+                allUsers[user.user].totalDonation = user.user.usdcDonations.add(user.usdcOfPlsDonations)
+
+            }
+        }
+    }
+    return allUsers
+}
+
+async function rankUsersDesc() {
+    const allUsers = await getAllUsers()
+    const donationArray = Object.entries(allUsers).map(([user, data]) => ({ user, ...data }));
+    donationArray.sort((a, b) => b.totalDonation - a.totalDonation);
+
+    return donationArray;
+}
+
 const leaderboardData = allUsersInMileStone()
 console.log("leader board:", leaderboardData)
 
