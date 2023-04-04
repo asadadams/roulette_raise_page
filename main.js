@@ -67,7 +67,6 @@ approvepls.addEventListener('click',function(){
       //lets loop through and get the active/live level-wheel
     for (let i = 0; i < levels.length; i++) {
         let attr = levels[i].classList
-        console.log(attr)
         if(attr.contains('live')){
             levels[i].classList.remove('live')
             levels[i].classList.add('past')
