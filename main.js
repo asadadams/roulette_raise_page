@@ -70,7 +70,7 @@ approvepls.addEventListener('click',function(){
         console.log(attr)
         if(attr.contains('live')){
             levels[i].classList.remove('live')
-            
+            levels[i].classList.add('past')
         }
 
         if(levels[i]?.id === `wheel-${currentMileStone}`){
