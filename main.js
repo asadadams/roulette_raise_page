@@ -1,5 +1,5 @@
-// let currentMileStone = 0
-// let currentPegPrice =0
+//let currentMileStone = 0
+let currentPegPrice = 0
 
 // var tag1 = document.createElement("script");
 // var tag2 = document.createElement("script");
@@ -61,6 +61,26 @@ getCurrentMilestone().then((data) => {
     contributePlsPegPrice.innerHTML = '$' + ethers.utils.formatUnits(data.priceOfPeg, 6)
     toppegprice.innerHTML = '$PEG Price ' + ethers.utils.formatUnits(data.priceOfPeg, 6)
 
+    //set side wheel
+    //get all side wheel ids
+    const levels = document.getElementsByClassName('level-wheel');
+    //lets loop through and get the active/live level-wheel
+    for (let i = 0; i < levels.length; i++) {
+      let attr = levels[i].classList
+      console.log(attr)
+      if (attr.contains('live')) {
+        levels[i].classList.remove('live')
+
+      }
+
+      if (levels[i]?.id === `wheel-${currentMileStone}`) {
+        levels[i].classList.add('live')
+        levels[i].classList.remove('past')
+      }
+    }
+
+
+
   }).catch((err) => {
     console.log('error: ', err)
   })
@@ -77,7 +97,7 @@ function getAllMileStones() {
     for (var i = 1; i <= 10; i++) {
 
       getUsersPerMileStone(i).then(function (data) {
-        console.log('user in milestone::', data)
+        // console.log('user in milestone::', data)
         if (data != undefined) {
           allUsersInMileStone.push(data)
         }
@@ -86,7 +106,7 @@ function getAllMileStones() {
       })
 
       getMilestone(i).then(function (data) {
-        console.log('current milestone::', data.plsRaised.toNumber())
+        //console.log('current milestone::', data.plsRaised.toNumber())
         totalTargetAmount += data.targetAmount.toNumber()
         allMileStones.push(data)
       }).catch((err) => {
@@ -97,27 +117,33 @@ function getAllMileStones() {
   });
 }
 
-getAllMileStones().then(function () {
+window.onload = () => {
+  getAllMileStones().then(function () {
 
-  setTimeout(function () {
-    allUsersInMileStone = allUsersInMileStone.sort((a, b) => b.usdcDonations.toNumber() - a.usdcDonations.toNumber());
+    setTimeout(function () {
+      allUsersInMileStone = allUsersInMileStone.sort((a, b) => b.usdcDonations.toNumber() - a.usdcDonations.toNumber());
 
-    console.log('allUsersInMileStone::', allUsersInMileStone)
-    console.log('all milestones::', allMileStones)
+      console.log('allUsersInMileStone::', allUsersInMileStone)
+      console.log('all milestones::', allMileStones)
 
-    var milestoneTag = document.createElement("script");
-    milestoneTag.src = " https://roulette-static-files.s3.us-west-2.amazonaws.com/milestone.js";
-    document.getElementsByTagName("body")[0].appendChild(milestoneTag);
-
-
-    var pepesLevelTag = document.createElement("script");
-    pepesLevelTag.src = "https://roulette-static-files.s3.us-west-2.amazonaws.com/pepeslevel.js";
-    document.getElementsByTagName("body")[0].appendChild(pepesLevelTag);
+      var milestoneTag = document.createElement("script");
+      milestoneTag.src = " https://roulette-static-files.s3.us-west-2.amazonaws.com/milestone.js";
+      document.getElementsByTagName("body")[0].appendChild(milestoneTag);
 
 
-    document.getElementById('total_raised_amount').innerHTML = '$' + totalTargetAmount
-  }, 3000);
+      var pepesLevelTag = document.createElement("script");
+      pepesLevelTag.src = "https://roulette-static-files.s3.us-west-2.amazonaws.com/pepeslevel.js";
+      document.getElementsByTagName("body")[0].appendChild(pepesLevelTag);
 
-});
+
+      document.getElementById('total_raised_amount').innerHTML = '$' + totalTargetAmount
+    }, 3000);
+
+  });
+}
+
+
+
+
 
  // getCurrentPLSMilestone()
