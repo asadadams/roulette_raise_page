@@ -318,16 +318,32 @@ const ABI = [
 
 var provider = null;
 var signer = null;
+var main_contract = null;
+var address = null;
 
 if (typeof window.ethereum !== 'undefined') {
+    const CONTRACT_ADDRESS = '0xb6Db8253f663BF7cE5b0F1AA4551f6D1dFc6c806';
     provider = new ethers.providers.Web3Provider(window.ethereum,"any");
     signer = provider.getSigner();
+    let promise = new Promise((resolve,reject)=>{
+        signer.getAddress().then(out=>{
+            address = out
+            resolve(address)
+        }).catch(err=>{
+            console.log("error:",err)
+            reject()
+        })    
+    })
+    
+    promise.then(res=>console.log(res)).catch(err=>console.log(err))
+    // provider.send("eth_requestAccounts", []).then(res=>{
+    //    // accounts = res
+    //     console.log("Accounts RES::",res)
+    // }).catch(error=>{
+    //     console.log("ERROR:",error)
+    // })
+    main_contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
  }else{
      alert("Please install Metamask")
  }
 
-const CONTRACT_ADDRESS = '0xb6Db8253f663BF7cE5b0F1AA4551f6D1dFc6c806';
-
-const main_contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
-let accounts = await provider.send("eth_requestAccounts", []);
-const address = accounts[0]

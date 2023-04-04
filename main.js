@@ -1,4 +1,4 @@
-let currentMileStone = 0
+//let currentMileStone = 0
 let currentPegPrice =0
 
 // var tag1 = document.createElement("script");
@@ -76,7 +76,7 @@ approvepls.addEventListener('click',function(){
     return new Promise(function(resolve, reject) {
        for (var i = 1; i <= 10; i++) {
       
-               getUsersPerMileStone(i).then(function(data){
+            getUsersPerMileStone(i).then(function(data){
             console.log('user in milestone::', data)
             if(data != undefined){
                 allUsersInMileStone.push(data)
@@ -97,29 +97,33 @@ approvepls.addEventListener('click',function(){
     });
   }
 
-  getAllMileStones().then(function() {
+  window.onload=()=>{
+    getAllMileStones().then(function() {
       
-    setTimeout(function() {
-      allUsersInMileStone = allUsersInMileStone.sort((a, b) => b.usdcDonations.toNumber() - a.usdcDonations.toNumber());
-             
-      console.log('allUsersInMileStone::', allUsersInMileStone)
-      console.log('all milestones::', allMileStones)
-        
-    var milestoneTag = document.createElement("script");
-    milestoneTag.src = " https://roulette-static-files.s3.us-west-2.amazonaws.com/milestone.js";
-    document.getElementsByTagName("body")[0].appendChild(milestoneTag);
+        setTimeout(function() {
+          allUsersInMileStone = allUsersInMileStone.sort((a, b) => b.usdcDonations.toNumber() - a.usdcDonations.toNumber());
+                 
+          console.log('allUsersInMileStone::', allUsersInMileStone)
+          console.log('all milestones::', allMileStones)
+            
+        var milestoneTag = document.createElement("script");
+        milestoneTag.src = " https://roulette-static-files.s3.us-west-2.amazonaws.com/milestone.js";
+        document.getElementsByTagName("body")[0].appendChild(milestoneTag);
+    
+    
+        var pepesLevelTag = document.createElement("script");
+        pepesLevelTag.src = "https://roulette-static-files.s3.us-west-2.amazonaws.com/pepeslevel.js";
+        document.getElementsByTagName("body")[0].appendChild(pepesLevelTag);
+          
+          
+          document.getElementById('total_raised_amount').innerHTML = '$' + totalTargetAmount
+              }, 3000);
+       
+      });
+  }
 
 
-    var pepesLevelTag = document.createElement("script");
-    pepesLevelTag.src = "https://roulette-static-files.s3.us-west-2.amazonaws.com/pepeslevel.js";
-    document.getElementsByTagName("body")[0].appendChild(pepesLevelTag);
-      
-      
-      document.getElementById('total_raised_amount').innerHTML = '$' + totalTargetAmount
-          }, 3000);
-   
-  });
   
 
-  
+
  // getCurrentPLSMilestone()
