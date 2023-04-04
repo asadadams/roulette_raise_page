@@ -81,6 +81,7 @@ const ABI = [
   {
     anonymous: false,
     inputs: [
+      { indexed: true, internalType: "address", name: "user", type: "address" },
       {
         indexed: true,
         internalType: "address",
@@ -183,9 +184,32 @@ const ABI = [
           },
           { internalType: "uint256", name: "usdcDonations", type: "uint256" },
         ],
-        internalType: "struct TGE.User",
+        internalType: "struct User",
         name: "",
         type: "tuple",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint8", name: "milestone", type: "uint8" }],
+    name: "getUsersPerMilestone",
+    outputs: [
+      {
+        components: [
+          { internalType: "address", name: "user", type: "address" },
+          { internalType: "uint256", name: "plsDonations", type: "uint256" },
+          {
+            internalType: "uint256",
+            name: "usdcOfPlsDonations",
+            type: "uint256",
+          },
+          { internalType: "uint256", name: "usdcDonations", type: "uint256" },
+        ],
+        internalType: "struct User[]",
+        name: "",
+        type: "tuple[]",
       },
     ],
     stateMutability: "view",
@@ -308,42 +332,50 @@ const ABI = [
   },
   {
     inputs: [],
-    name: "withdraw",
+    name: "withdrawPLS",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "withdrawUSDC",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },
 ];
 
-
 var provider = null;
 var signer = null;
 var main_contract = null;
 var address = null;
 
-if (typeof window.ethereum !== 'undefined') {
-    const CONTRACT_ADDRESS = '0xb6Db8253f663BF7cE5b0F1AA4551f6D1dFc6c806';
-    provider = new ethers.providers.Web3Provider(window.ethereum,"any");
-    signer = provider.getSigner();
-    let promise = new Promise((resolve,reject)=>{
-        signer.getAddress().then(out=>{
-            address = out
-            resolve(address)
-        }).catch(err=>{
-            console.log("error:",err)
-            reject()
-        })    
-    })
-    
-    promise.then(res=>console.log(res)).catch(err=>console.log(err))
-    // provider.send("eth_requestAccounts", []).then(res=>{
-    //    // accounts = res
-    //     console.log("Accounts RES::",res)
-    // }).catch(error=>{
-    //     console.log("ERROR:",error)
-    // })
-    main_contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
- }else{
-     alert("Please install Metamask")
- }
+if (typeof window.ethereum !== "undefined") {
+  const CONTRACT_ADDRESS = "0x38E56fc4Ca17Ba6230b3A62593cAB91CAB78d043";
+  provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+  signer = provider.getSigner();
+  let promise = new Promise((resolve, reject) => {
+    signer
+      .getAddress()
+      .then((out) => {
+        address = out;
+        resolve(address);
+      })
+      .catch((err) => {
+        console.log("error:", err);
+        reject();
+      });
+  });
 
+  promise.then((res) => console.log(res)).catch((err) => console.log(err));
+  // provider.send("eth_requestAccounts", []).then(res=>{
+  //    // accounts = res
+  //     console.log("Accounts RES::",res)
+  // }).catch(error=>{
+  //     console.log("ERROR:",error)
+  // })
+  main_contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
+} else {
+  alert("Please install Metamask");
+}

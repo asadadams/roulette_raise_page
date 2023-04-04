@@ -42,8 +42,7 @@ approvepls.addEventListener('click',function(){
 //};
 
 
-    //let userDetails = getUserDetails()
-  //console.log('user details::',userDetails)
+ 
    getCurrentMilestone().then((data)=>{
     //console.log('Milestone details::',data)
      currentMileStone = data
@@ -89,17 +88,7 @@ gpindc.style.width = ((currentpercent/100)*300)+'px';
 let topnextpegprice = document.getElementById('topnextpegprice');
 topnextpegprice.innerHTML = 'Next Level: '+(ethers.utils.formatUnits(milestone.priceOfPeg.add(ethers.utils.parseUnits('0.10',6)),6))
 
-const plsContributions = document.getElementById('contributions_pls');
-const usdcContributions = document.getElementById('contributions_usdc');
-const amountContributions = document.getElementById('contributions_amount');
-const pegContributions = document.getElementById('contributions_peg');
-const pegPriceContributions = document.getElementById('contributions_peg_price');
 
-// plsContributions.innerHTML = '$'+user?.contributed_pls
-// usdcContributions.innerHTML = '$'+user?.contributed_usdc
-// amountContributions.innerHTML = '$'+user?.contributed_amount
-// pegPriceContributions.innerHTML = user?.contributed_peg
-// pegContributions.innerHTML = user?.pegPrice
 
       //set side wheel
       //get all side wheel ids
@@ -145,7 +134,7 @@ const pegPriceContributions = document.getElementById('contributions_peg_price')
     return new Promise(function(resolve, reject) {
        for (var i = 1; i <= 10; i++) {
       
-            getUsersPerMileStone(i).then(function(data){
+            getUsersInMileStone(i).then(function(data){
            // console.log('user in milestone::', data)
             if(data != undefined){
                 allUsersInMileStone.push(data)
@@ -167,6 +156,26 @@ const pegPriceContributions = document.getElementById('contributions_peg_price')
   }
 
   window.onload=()=>{
+
+    let user = null
+   getUserDetails().then((response)=>{
+    user=response;
+   }).catch(err=>console.log(err))
+   console.log('user details::',user)
+
+   const plsContributions = document.getElementById('contributions_pls');
+const usdcContributions = document.getElementById('contributions_usdc');
+const amountContributions = document.getElementById('contributions_amount');
+const pegContributions = document.getElementById('contributions_peg');
+const pegPriceContributions = document.getElementById('contributions_peg_price');
+
+plsContributions.innerHTML = '$'+user?.contributed_pls
+usdcContributions.innerHTML = '$'+user?.contributed_usdc
+amountContributions.innerHTML = '$'+user?.contributed_amount
+pegPriceContributions.innerHTML = user?.contributed_peg
+pegContributions.innerHTML = user?.pegPrice
+
+
     getAllMileStones().then(function() {
       
         setTimeout(function() {
