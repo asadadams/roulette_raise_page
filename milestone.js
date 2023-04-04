@@ -1,18 +1,15 @@
+// Milestones Section
 
 // const levelsData = fetchLevelData()
 
-console.log('test:::', allMileStones)
-
 const levelsData = allMileStones
+console.log('milestone data::', levelsData)
 
-console.log('levels data::', levelsData)
-
-// Level Details
 const levelsTable = document.querySelector('[datasource="levels-table"]');
 levelsData.slice(0, 10).forEach((entry, index) => {
     let levelElement = ''
-    let filled = ((entry.totalUSDCRaised.toNumber() + entry.usdcOfPlsRaised.toNumber()) / entry.targetAmount.toNumber()) * 100
-    console.log('filled::', filled, isNaN(filled))
+    let filled = ((entry.totalUSDCRaised.toNumber() + entry.usdcOfPlsRaised.toNumber()) / ethers.utils.formatUnits(entry.targetAmount, 6)) * 100
+    filled = parseFloat(filled.toFixed(2))
 
     const entryElement = document.createElement('div');
     entryElement.setAttribute('class', 'table_item')
@@ -28,16 +25,17 @@ levelsData.slice(0, 10).forEach((entry, index) => {
         levelElement = `<div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-normal ld">#${index + 1}</div>`
     }
 
+    console.log('converted::', ethers.utils.formatUnits(entry.targetAmount, 6), ethers.utils.formatUnits(entry.targetAmount, 6).toLocaleString())
     entryElement.innerHTML = `
             <div role="cell" class="table9_column is-width-small-x2">
                ${levelElement}
             </div>
             <div role="cell" class="table9_column is-width-large">
-                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER">$${entry.targetAmount.toNumber().toLocaleString()}</div>
+                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER">$${ethers.utils.formatUnits(entry.targetAmount, 6).toLocaleString()}</div>
             </div>
             <div role="cell" class="table9_column is-width-large">
-                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-small">$${(0.25 * entry.targetAmount).toLocaleString()} $PLS</div>
-                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-small">$${(0.75 * entry.targetAmount).toLocaleString()} $USDC</div>
+                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-small">$${(0.25 * ethers.utils.formatUnits(entry.targetAmount, 6)).toLocaleString()} $PLS</div>
+                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-small">$${(0.75 * ethers.utils.formatUnits(entry.targetAmount, 6)).toLocaleString()} $USDC</div>
             </div>
             <div role="cell" class="table9_column is-width-large">
                 <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER">400,000</div>
@@ -71,4 +69,4 @@ levelsData.slice(0, 10).forEach((entry, index) => {
     `;
     levelsTable.appendChild(entryElement)
 });
-// End of Level Details
+// End of Milestones Section

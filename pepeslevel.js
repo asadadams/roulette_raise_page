@@ -9,7 +9,8 @@ const levelsPepesTable = document.querySelector('[datasource="levels-pepes-table
 function loadPepesTableLevels(data) {
    data.forEach((entry, index) => {
       let levelElement = ''
-      let filled = ((entry.totalUSDCRaised.toNumber() + entry.usdcOfPlsRaised.toNumber()) / entry.targetAmount.toNumber()) * 100
+      let filled = ((entry.totalUSDCRaised.toNumber() + entry.usdcOfPlsRaised.toNumber()) / ethers.utils.formatUnits(entry.targetAmount, 6)) * 100
+      filled = parseFloat(filled.toFixed(2))
 
       const entryElement = document.createElement('div');
       entryElement.setAttribute('class', 'level-wrapper')
@@ -35,8 +36,11 @@ function loadPepesTableLevels(data) {
          </div>`
       }
 
-      var plsPercentage = (entry.usdcOfPlsRaised.toNumber() / (0.25 * entry.targetAmount.toNumber())) * 100
-      var usdcPercentage = (entry.usdcRaised.toNumber() / (0.75 * entry.targetAmount.toNumber())) * 100
+      var plsPercentage = (entry.usdcOfPlsRaised.toNumber() / (0.25 * ethers.utils.formatUnits(entry.targetAmount, 6))) * 100
+      var usdcPercentage = (entry.usdcRaised.toNumber() / (0.75 * ethers.utils.formatUnits(entry.targetAmount, 6))) * 100
+
+      plsPercentage = parseFloat(plsPercentage.toFixed(2))
+      usdcPercentage = parseFloat(usdcPercentage.toFixed(2))
 
       entryElement.innerHTML = `
         <div class="top">
@@ -65,7 +69,7 @@ function loadPepesTableLevels(data) {
         <div class="values-div">
            <div class="l-block">
               <div class="l-text">Max Raise</div>
-              <div class="l-value">$${entry.targetAmount.toNumber().toLocaleString()}</div>
+              <div class="l-value">$${ethers.utils.formatUnits(entry.targetAmount, 6).toLocaleString()}</div>
            </div>
            <div class="l-block">
               <div class="l-text">$PEG Distribution</div>
@@ -95,7 +99,7 @@ function loadPepesTableLevels(data) {
                        <div class="text-block---smaill">$PEG Price</div>
                     </div>
                     <div class="div-wrapper">
-                       <div class="text-block---smaill value">$${entry.targetAmount.toNumber() / 400000}</div>
+                       <div class="text-block---smaill value">$${ethers.utils.formatUnits(entry.priceOfPeg, 6)}</div>
                     </div>
                  </div>
               </div>
@@ -118,7 +122,7 @@ function loadPepesTableLevels(data) {
                        <div class="text-block---smaill">$PEG Price</div>
                     </div>
                     <div class="div-wrapper">
-                       <div class="text-block---smaill value">$${entry.targetAmount.toNumber() / 400000}</div>
+                       <div class="text-block---smaill value">$${ethers.utils.formatUnits(entry.priceOfPeg, 6)}</div>
                     </div>
                  </div>
               </div>
