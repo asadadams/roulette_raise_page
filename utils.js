@@ -329,3 +329,5 @@ if (typeof window.ethereum !== 'undefined') {
 const CONTRACT_ADDRESS = '0xb6Db8253f663BF7cE5b0F1AA4551f6D1dFc6c806';
 
 const main_contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
+let accounts = await provider.send("eth_requestAccounts", []);
+const address = accounts[0]
