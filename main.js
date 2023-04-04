@@ -60,6 +60,26 @@ approvepls.addEventListener('click',function(){
                 currentPegPrice.innerHTML = '$' + ethers.utils.formatUnits(data.priceOfPeg,6) 
       contributePlsPegPrice.innerHTML = '$' + ethers.utils.formatUnits(data.priceOfPeg,6) 
       toppegprice.innerHTML = '$PEG Price ' + ethers.utils.formatUnits(data.priceOfPeg,6) 
+
+      //set side wheel
+      //get all side wheel ids
+      const levels = document.getElementsByClassName('level-wheel');
+      //lets loop through and get the active/live level-wheel
+    for (let i = 0; i < levels.length; i++) {
+        let attr = levels[i].classList
+        console.log(attr)
+        if(attr.contains('live')){
+            levels[i].classList.remove('live')
+            
+        }
+
+        if(levels[i]?.id === `wheel-${currentMileStone}`){
+            levels[i].classList.add('live')
+            levels[i].classList.remove('past')
+        }
+    }
+
+
       
      }).catch((err)=>{
          console.log('error: ', err)
@@ -77,7 +97,7 @@ approvepls.addEventListener('click',function(){
        for (var i = 1; i <= 10; i++) {
       
             getUsersPerMileStone(i).then(function(data){
-            console.log('user in milestone::', data)
+           // console.log('user in milestone::', data)
             if(data != undefined){
                 allUsersInMileStone.push(data)
             }
@@ -86,7 +106,7 @@ approvepls.addEventListener('click',function(){
            })
             
            getMilestone(i).then(function(data){
-            console.log('current milestone::', data.plsRaised.toNumber())
+            //console.log('current milestone::', data.plsRaised.toNumber())
             totalTargetAmount += data.targetAmount.toNumber()
             allMileStones.push(data)
            }).catch((err)=>{
