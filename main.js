@@ -160,20 +160,25 @@ topnextpegprice.innerHTML = 'Next Level: '+(ethers.utils.formatUnits(milestone.p
     let user = null
    getUserDetails().then((response)=>{
     user=response;
+    console.log(user)
+    if(user){
+        const plsContributions = document.getElementById('contributions_pls');
+        const usdcContributions = document.getElementById('contributions_usdc');
+        const amountContributions = document.getElementById('contributions_amount');
+        const pegContributions = document.getElementById('contributions_peg');
+        const pegPriceContributions = document.getElementById('contributions_peg_price');
+    
+        plsContributions.innerHTML = '$'+user?.contributed_pls
+        usdcContributions.innerHTML = '$'+user?.contributed_usdc
+        amountContributions.innerHTML = '$'+user?.contributed_amount
+        pegPriceContributions.innerHTML = user?.contributed_peg
+        pegContributions.innerHTML = user?.pegPrice
+    }
+
    }).catch(err=>console.log(err))
    console.log('user details::',user)
 
-   const plsContributions = document.getElementById('contributions_pls');
-const usdcContributions = document.getElementById('contributions_usdc');
-const amountContributions = document.getElementById('contributions_amount');
-const pegContributions = document.getElementById('contributions_peg');
-const pegPriceContributions = document.getElementById('contributions_peg_price');
 
-plsContributions.innerHTML = '$'+user?.contributed_pls
-usdcContributions.innerHTML = '$'+user?.contributed_usdc
-amountContributions.innerHTML = '$'+user?.contributed_amount
-pegPriceContributions.innerHTML = user?.contributed_peg
-pegContributions.innerHTML = user?.pegPrice
 
 
     getAllMileStones().then(function() {
