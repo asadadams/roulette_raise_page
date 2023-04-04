@@ -49,9 +49,9 @@ approvepls.addEventListener('click',function(){
      currentMileStone = data
      
      getMilestone(data).then((data)=>{
-         console.log('current milestone::', data.plsRaised.toNumber())
-      console.log('target amount::', data.targetAmount.toNumber())
-      
+      //console.log('current milestone::', data.plsRaised.toNumber())
+      //console.log('target amount::', data.targetAmount.toNumber())
+      currentMileStoneData = data;
       //currentPegPrice = data.targetAmount.toNumber()
       
       const currentPegPrice = document.getElementById('current_peg_price')

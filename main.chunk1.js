@@ -1,13 +1,8 @@
 let user = fetchUser();
 
-let leveld = fetchLevelData();
+//let leveld = fetchLevelData();
 //lets get the current active level
-let currentlevel;
-leveld.map((ld)=>{
-	if(ld.filled > 0 && ld.filled < 100){
-  	currentlevel = ld
-  }
-})
+let currentlevel = currentMileStoneData
 
 const cl = document.getElementById('currentlevel');
 cl.innerHTML = 'Level '+currentlevel.level
