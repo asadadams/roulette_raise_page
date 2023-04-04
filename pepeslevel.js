@@ -6,38 +6,39 @@ console.log('levels data::', pepesLevelData)
 
 const levelsPepesTable = document.querySelector('[datasource="levels-pepes-table"]');
 
-function loadPepesTableLevels(data) {
-   data.forEach((entry, index) => {
+function loadPepesTableLevels(data, startIndex) {
+   let rank = startIndex
+   data.forEach(function (entry, index) {
       let levelElement = ''
-      let filled = ((entry.totalUSDCRaised.toNumber() + entry.usdcOfPlsRaised.toNumber()) / ethers.utils.formatUnits(entry.targetAmount, 6)) * 100
+      // let filled = ((entry.totalUSDCRaised.toNumber() + entry.usdcOfPlsRaised.toNumber()) / entry.targetAmount.toNumber()) * 100
+      let filled = ((ethers.utils.formatUnits(entry.totalUSDCRaised, 6) + ethers.utils.formatUnits(entry.usdcOfPlsRaised, 6)) / ethers.utils.formatUnits(entry.targetAmount, 6)) * 100
       filled = parseFloat(filled.toFixed(2))
 
       const entryElement = document.createElement('div');
       entryElement.setAttribute('class', 'level-wrapper')
       // entryElement.setAttribute('role', 'row')
 
-
       if (filled == 100) {
          levelElement = `<div class="l-status">
             <img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/64200f60acf50ee5d2360703_SOLD%20OUT.png" loading="lazy" alt="" class="level-img">
-            <div class="level-text">Level ${index + 1}</div>
+            <div class="level-text">Level ${rank++}</div>
          </div>`
          entryElement.classList.add('soldout')
       } else if (filled != 0 && filled != 100) {
          levelElement = ` <div class="l-status">
             <img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/6420113ecc09c93f9ec2d90f_open.png" loading="lazy" alt="" class="table_image">
-            <div class="level-text">Level ${index + 1}</div>
+            <div class="level-text">Level ${rank++}</div>
          </div>`
          entryElement.classList.add('open')
       } else {
          levelElement = `<div class="l-status">
-            <div style="padding:0px;" fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-normal ld">#${index + 1}</div>
-            <div class="level-text">Level ${index + 1}</div>
+            <div style="padding:0px;" fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-normal ld">#${rank++}</div>
+            <div class="level-text">Level ${rank++}</div>
          </div>`
       }
 
-      var plsPercentage = (entry.usdcOfPlsRaised.toNumber() / (0.25 * ethers.utils.formatUnits(entry.targetAmount, 6))) * 100
-      var usdcPercentage = (entry.usdcRaised.toNumber() / (0.75 * ethers.utils.formatUnits(entry.targetAmount, 6))) * 100
+      var plsPercentage = (entry.usdcOfPlsRaised.toNumber() / (0.25 * entry.targetAmount.toNumber())) * 100
+      var usdcPercentage = (entry.usdcRaised.toNumber() / (0.75 * entry.targetAmount.toNumber())) * 100
 
       plsPercentage = parseFloat(plsPercentage.toFixed(2))
       usdcPercentage = parseFloat(usdcPercentage.toFixed(2))
@@ -135,12 +136,12 @@ function loadPepesTableLevels(data) {
 
 
 //Loading the first data
-loadPepesTableLevels(pepesLevelData.slice(0, 4))
+loadPepesTableLevels(pepesLevelData.slice(0, 4), 1)
 
-
+console.log('len of pepe data::', pepesLevelData.length)
 if (pepesLevelData.length >= 10) {
    let showMoreLevelsButtonElement = document.createElement('div');
-   entryElement.setAttribute('id', 'showmoreLevelsButtonWrapper')
+   showMoreLevelsButtonElement.setAttribute('id', 'showmoreLevelsButtonWrapper')
    showMoreLevelsButtonElement.innerHTML = `<div id="w-node-_59dc2a35-3ddb-79f5-1659-43a5e5745752-5c7ba5ac" class="level-button"><div class="button-wrapper"><a id="showmoreLevelsButton" href="#" class="button-2 is-icon contribution w-inline-block"><div class="button-text"><div class="text-block-copy">Reveal All Levels</div></div></a></div></div>`
    levelsPepesTable.appendChild(showMoreLevelsButtonElement)
 
@@ -149,7 +150,7 @@ if (pepesLevelData.length >= 10) {
 
    // add a click event listener to the "Show More" button
    showMoreLevelsButton.addEventListener("click", () => {
-      loadPepesTableLevels(pepesLevelData.slice(10))
+      loadPepesTableLevels(pepesLevelData.slice(4), 5)
       document.getElementById('showmoreLevelsButtonWrapper').style.display = 'none'
    })
 }
