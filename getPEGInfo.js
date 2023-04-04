@@ -3,6 +3,9 @@
 const _contracts = window.roulette;
 console.log("ALL_CONTRACTS::",_contracts)
 
+//lets get the signer directly from ethers
+//const _signer = ethers.
+
 const erc20ABI = [
     'function balanceOf(address account) view returns (uint256)',
     'function transfer(address recipient, uint256 amount) returns (bool)',
