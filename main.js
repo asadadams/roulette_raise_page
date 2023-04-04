@@ -45,21 +45,61 @@ approvepls.addEventListener('click',function(){
     //let userDetails = getUserDetails()
   //console.log('user details::',userDetails)
    getCurrentMilestone().then((data)=>{
-       console.log('Milestone details::',data)
+    //console.log('Milestone details::',data)
      currentMileStone = data
      
-     getMilestone(data).then((data)=>{
+     getMilestone(data).then((milestone)=>{
       //console.log('current milestone::', data.plsRaised.toNumber())
       //console.log('target amount::', data.targetAmount.toNumber())
-      currentMileStoneData = data;
+      currentMileStoneData = milestone;
       //currentPegPrice = data.targetAmount.toNumber()
       
       const currentPegPrice = document.getElementById('current_peg_price')
       const contributePlsPegPrice = document.getElementById('contribute_pls_peg_price')
       const toppegprice = document.getElementById('toppegprice')
-                currentPegPrice.innerHTML = '$' + ethers.utils.formatUnits(data.priceOfPeg,6) 
-      contributePlsPegPrice.innerHTML = '$' + ethers.utils.formatUnits(data.priceOfPeg,6) 
-      toppegprice.innerHTML = '$PEG Price ' + ethers.utils.formatUnits(data.priceOfPeg,6) 
+                currentPegPrice.innerHTML = '$' + ethers.utils.formatUnits(milestone.priceOfPeg,6) 
+      contributePlsPegPrice.innerHTML = '$' + ethers.utils.formatUnits(milestone.priceOfPeg,6) 
+      toppegprice.innerHTML = '$PEG Price ' + ethers.utils.formatUnits(milestone.priceOfPeg,6) 
+
+
+      //setting varibales of section above donate
+      const cl = document.getElementById('currentlevel');
+cl.innerHTML = 'Level '+data
+console.log('current level::',data)
+const levelcontent = document.getElementById('levelcontent');
+levelcontent.innerHTML = '$'+ (ethers.utils.formatUnits(milestone.totalUSDCRaised),6) +': 25% PLS / 75% USDC'
+
+const contributionUSDCLevelDiv = document.getElementById('current_usdc_level')
+const contributionPLSLevelDiv = document.getElementById('current_pls_level')
+
+contributionUSDCLevelDiv.innerHTML = 'USDC Level '+ data
+contributionPLSLevelDiv.innerHTML = 'PLS Level '+ data
+
+
+//generalprogressindicator
+const gpindc = document.getElementById('generalprogressindicator');
+//progressbar width = 300
+let currentcontb = (ethers.utils.formatUnits(milestone.totalUSDCRaised),6)
+let currentpercent = (currentcontb / ethers.utils.formatUnits(milestone.targetAmount,6)) * 100
+console.log("current percent:",currentpercent)
+gpindc.style.width = ((currentpercent/100)*300)+'px';
+//}
+
+// toppegprice.innerHTML = '$PEG Price $0.5'
+let topnextpegprice = document.getElementById('topnextpegprice');
+topnextpegprice.innerHTML = 'Next Level: '+(ethers.utils.formatUnits(milestone.priceOfPeg.add(ethers.utils.parseUnits('0.10',6)),6))
+
+const plsContributions = document.getElementById('contributions_pls');
+const usdcContributions = document.getElementById('contributions_usdc');
+const amountContributions = document.getElementById('contributions_amount');
+const pegContributions = document.getElementById('contributions_peg');
+const pegPriceContributions = document.getElementById('contributions_peg_price');
+
+// plsContributions.innerHTML = '$'+user?.contributed_pls
+// usdcContributions.innerHTML = '$'+user?.contributed_usdc
+// amountContributions.innerHTML = '$'+user?.contributed_amount
+// pegPriceContributions.innerHTML = user?.contributed_peg
+// pegContributions.innerHTML = user?.pegPrice
 
       //set side wheel
       //get all side wheel ids
@@ -69,12 +109,22 @@ approvepls.addEventListener('click',function(){
         let attr = levels[i].classList
         if(attr.contains('live')){
             levels[i].classList.remove('live')
-            levels[i].classList.add('past')
+            levels[i].classList.add('upcoming')
+
+            //remove live from children
+            let children = levels[i].getElementsByTagName('div')
+            children[0].classList.remove('live')
+            children[1].classList.remove('live')
         }
 
         if(levels[i]?.id === `wheel-${currentMileStone}`){
             levels[i].classList.add('live')
             levels[i].classList.remove('past')
+
+             //add live to children
+             let children = levels[i].getElementsByTagName('div')
+             children[0].classList.add('live')
+             children[1].classList.add('live')
         }
     }
 
