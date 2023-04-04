@@ -1,7 +1,7 @@
 
 
-const _contracts = window.roulette;
-console.log("ALL_CONTRACTS::",_contracts)
+//const _contracts = window.roulette;
+//console.log("ALL_CONTRACTS::",_contracts)
 
 //lets get the signer directly from ethers
 //const _signer = ethers.
@@ -27,9 +27,9 @@ const erc20ABI = [
 async function getUserDetails(){
     try {
         //lets get user address
-       let address = _contracts.address
+       //let address = _contracts.address
 
-       const data = await contract.getUserDetails(address)
+       const data = await main_contract.getUserDetails(address)
         console.log(data)
         return data
     } catch (error) {
@@ -40,7 +40,7 @@ async function getUserDetails(){
 //returns current milestone eg 1
 async function getCurrentMilestone(){
     try {
-        const data = await contract.currentMilestone()
+        const data = await main_contract.currentMilestone()
         console.log(data)
         return data
     } catch (error) {
@@ -61,7 +61,7 @@ async function getCurrentMilestone(){
 // }
 async function getMilestone(milestone){
     try {
-        const data = await contract.milestones(milestone)
+        const data = await main_contract.milestones(milestone)
         console.log(data)
         return data;
     } catch (error) {
@@ -79,10 +79,10 @@ async function getMilestone(milestone){
 // }
 async function getUsersPerMileStone(milestone){
     //lets get user address
-    let address = _contracts.address
+    //let address = _contracts.address
     console.log(address)
     try {
-        let user = await contract.users(milestone,address)
+        let user = await main_contract.users(milestone,address)
         console.log("USER::",user)
         return user;
     } catch (error) {
@@ -94,7 +94,7 @@ async function getUsersPerMileStone(milestone){
 async function approveUSDC(){
     try {
         let usdc_address = '0xff970a61a04b1ca14834a43f5de4533ebddb5cc8'
-        const tokenContract = new ethers.Contract(usdc_address, erc20ABI, _contracts.signer);
+        const tokenContract = new ethers.Contract(usdc_address, erc20ABI, signer);
         const tx = await tokenContract.approve('0xb6Db8253f663BF7cE5b0F1AA4551f6D1dFc6c806', ethers.constants.MaxUint256)
         const receipt = await tx.wait();
         console.log('Approval successful:', receipt);
@@ -107,7 +107,7 @@ async function approveUSDC(){
 async function approvePLS(){
     try {
         let pls_address = '0x51318B7D00db7ACc4026C88c3952B66278B6A67F'
-        const tokenContract = new ethers.Contract(pls_address, erc20ABI, _contracts.signer);
+        const tokenContract = new ethers.Contract(pls_address, erc20ABI, signer);
         const tx = await tokenContract.approve('0xb6Db8253f663BF7cE5b0F1AA4551f6D1dFc6c806', ethers.constants.MaxUint256)
         const receipt = await tx.wait();
         console.log('Approval successful:', receipt);
@@ -120,8 +120,8 @@ async function approvePLS(){
 async function getAllowancePLS(){
     try {
         let pls_address = '0x51318B7D00db7ACc4026C88c3952B66278B6A67F'
-        const tokenContract = new ethers.Contract(pls_address, erc20ABI, _contracts.signer);
-        const allowance = await tokenContract.allowance(_contracts.address, '0xb6Db8253f663BF7cE5b0F1AA4551f6D1dFc6c806');
+        const tokenContract = new ethers.Contract(pls_address, erc20ABI, signer);
+        const allowance = await tokenContract.allowance(address, '0xb6Db8253f663BF7cE5b0F1AA4551f6D1dFc6c806');
         if(ethers.utils.parseUnits('10',18).gt(allowance)){
             approvePLS()
         }
@@ -133,8 +133,8 @@ async function getAllowancePLS(){
 async function getAllowanceUSDC(){
     try {
         let usdc_address = '0xff970a61a04b1ca14834a43f5de4533ebddb5cc8'
-        const tokenContract = new ethers.Contract(usdc_address, erc20ABI, _contracts.signer);
-        const allowance = await tokenContract.allowance(_contracts.address, '0xb6Db8253f663BF7cE5b0F1AA4551f6D1dFc6c806');
+        const tokenContract = new ethers.Contract(usdc_address, erc20ABI, signer);
+        const allowance = await tokenContract.allowance(address, '0xb6Db8253f663BF7cE5b0F1AA4551f6D1dFc6c806');
         if(ethers.utils.parseUnits('10',6).gt(allowance)){
             approveUSDC()
         }
