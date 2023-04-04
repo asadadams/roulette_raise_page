@@ -1,39 +1,18 @@
-// const leaderboardData = [
-//     { rank: 1, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 5000 },
-//     { rank: 2, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 4000 },
-//     { rank: 3, address: "0x1234567890abcdef1234567890abcdef1234567dd", amount: 3000 },
-//     { rank: 4, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 2000 },
-//     { rank: 5, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 1000 },
-//     { rank: 6, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 900 },
-//     { rank: 7, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 800 },
-//     { rank: 8, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 700 },
-//     { rank: 9, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 600 },
-//     { rank: 10, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 500 },
-//     { rank: 97, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 100 },
-//     { rank: 98, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 99 },
-//     { rank: 99, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 98 },
-//     { rank: 100, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 97 },
-//     { rank: 125, address: "0x1234567890abcdef1234567890abcdef12345678", amount: 96 },
-//     { rank: 126, address: "0xabcdef1234567890abcdef1234567890abcdef12", amount: 95 },
-// ];
-
-// const{fetchTopContributors} = require('./fetchData');
-
 async function getAllUsers() {
     const currentMilestone = await main_contract.currentMilestone();
     let allUsers = {};
 
-    for (const i = 1; i <= currentMilestone; i++){
+    for (let i = 1; i <= currentMilestone; i++) {
         const users = await main_contract.getUsersPerMilestone(i)
         if (i === 1) {
             for (const user of users) {
                 allUsers[user.user] = user; /// @notice allUsers[userAddress] = userObject
-                allUsers[user.user].totalDonation = user.user.usdcDonations.add(user.usdcOfPlsDonations)
+                allUsers[user.user].totalDonation = user.usdcDonations.add(user.usdcOfPlsDonations)
             }
             continue
         }
-    
-        for (const user of users) {
+
+        for (let user of users) {
             if (user.user in allUsers) {
                 /// @notice expecting the values of the pls donations, usdcDonations ... to be BigNumbers
                 allUsers[user.user].plsDonations = allUsers[user.user].plsDonations.add(user.plsDonations)
@@ -59,8 +38,8 @@ async function rankUsersDesc() {
     return donationArray;
 }
 
-const leaderboardData = allUsersInMileStone()
-console.log("leader board:", leaderboardData)
+// const leaderboardData = allUsersInMileStone()
+// console.log("leader board:", leaderboardData)
 
 const leaderBoardTable = document.querySelector('[datasource="leaderboard-table"]');
 
@@ -84,7 +63,7 @@ function loadLeaderBoardData(data) {
         amountElement.setAttribute('fs-cmssort-field', 'IDENTIFIER');
 
         // addressElement.innerHTML = `${entry.address.substring(0, 4)}.....${entry.address.slice(-4)}`
-        amountElement.innerHTML = `${entry.contributed_amount}`
+        amountElement.innerHTML = `${entry.usdcDonations}`
 
         //Applying background colour class to all even entries
         if (index % 2 === 0) {
@@ -95,7 +74,7 @@ function loadLeaderBoardData(data) {
         if (user.address === entry.address) {
             addressElement.innerHTML = "This is You!"
         } else {
-            addressElement.innerHTML = `${entry.address.substring(0, 4)}.....${entry.address.slice(-4)}`
+            addressElement.innerHTML = `${entry.user.substring(0, 4)}.....${entry.user.slice(-4)}`
         }
 
         if (rank <= 3) {
@@ -163,15 +142,17 @@ function loadLeaderBoardData(data) {
 }
 
 
-//load first 3 entries
-loadLeaderBoardData(leaderboardData.slice(0, 3))
+function Run(leaderboardData) {
+
+    //load first 3 entries
+    loadLeaderBoardData(leaderboardData.slice(0, 3))
 
 
-//Appening extra elements to page , element with dots . 
-const entryExtraElement = document.createElement('div');
-entryExtraElement.classList.add('table_item', 'extra', 'leaderboard-entry');
-entryExtraElement.setAttribute('role', 'row')
-entryExtraElement.innerHTML = `
+    //Appening extra elements to page , element with dots . 
+    const entryExtraElement = document.createElement('div');
+    entryExtraElement.classList.add('table_item', 'extra', 'leaderboard-entry');
+    entryExtraElement.setAttribute('role', 'row')
+    entryExtraElement.innerHTML = `
 <div role="row" class="table_item extra">
    <div role="cell" class="table9_column is-width-small extra">
       <div class="dot-div">
@@ -183,52 +164,62 @@ entryExtraElement.innerHTML = `
    </div>
 </div>
 `
-leaderBoardTable.appendChild(entryExtraElement);
+    leaderBoardTable.appendChild(entryExtraElement);
 
 
-let startIndex = 6
-let endIndex = 9
-if (leaderboardData.length > 100) {
-    startIndex = 96
-    endIndex = 99
-}
-
-//Loading middle entries
-loadLeaderBoardData(leaderboardData.slice(startIndex, endIndex))
-
-
-// Loading last entries
-loadLeaderBoardData(leaderboardData.slice(100, 104))
-
-
-function removeAllEntries() {
-    // Get all the elements with the specific class name
-    const elementsToRemove = document.querySelectorAll('.leaderboard-entry');
-
-    // Loop through the selected elements and remove them one by one
-    for (let i = 0; i < elementsToRemove.length; i++) {
-        elementsToRemove[i].remove();
+    let startIndex = 6
+    let endIndex = 9
+    if (leaderboardData.length > 100) {
+        startIndex = 96
+        endIndex = 99
     }
+
+    //Loading middle entries
+    loadLeaderBoardData(leaderboardData.slice(startIndex, endIndex))
+
+
+    // Loading last entries
+    loadLeaderBoardData(leaderboardData.slice(100, 104))
+
+
+    function removeAllEntries() {
+        // Get all the elements with the specific class name
+        const elementsToRemove = document.querySelectorAll('.leaderboard-entry');
+
+        // Loop through the selected elements and remove them one by one
+        for (let i = 0; i < elementsToRemove.length; i++) {
+            elementsToRemove[i].remove();
+        }
+    }
+
+
+
+    //Appending show more button when data is more than 120
+    if (leaderboardData.length > 120) {
+        let leaderBoardButtons = document.getElementById('leaderBoardButtons')
+        let showTop120ContributorsButton = document.createElement('div');
+        showTop120ContributorsButton.innerHTML = `<a href="#" id='showmore' class="button-2 is-icon contribution w-inline-block"><div class="button-text"><div class="text-block-copy">See Top 120 Contributooors</div></div></a>`
+        leaderBoardButtons.appendChild(showTop120ContributorsButton)
+
+
+        // Loading the rest levels when shomore levels button is clicked
+        const showmoreButton = document.getElementById('showmore');
+
+        // add a click event listener to the "Show More" button
+        showmoreButton.addEventListener("click", () => {
+            removeAllEntries()
+            loadLeaderBoardData(levelsData.slice(0, 120))
+            document.getElementById('showmore').style.display = 'none'
+        })
+
+    }
+
 }
 
 
-
-//Appending show more button when data is more than 120
-if (leaderboardData.length > 120) {
-    let leaderBoardButtons = document.getElementById('leaderBoardButtons')
-    let showTop120ContributorsButton = document.createElement('div');
-    showTop120ContributorsButton.innerHTML = `<a href="#" id='showmore' class="button-2 is-icon contribution w-inline-block"><div class="button-text"><div class="text-block-copy">See Top 120 Contributooors</div></div></a>`
-    leaderBoardButtons.appendChild(showTop120ContributorsButton)
-
-
-    // Loading the rest levels when shomore levels button is clicked
-    const showmoreButton = document.getElementById('showmore');
-
-    // add a click event listener to the "Show More" button
-    showmoreButton.addEventListener("click", () => {
-        removeAllEntries()
-        loadLeaderBoardData(levelsData.slice(0, 120))
-        document.getElementById('showmore').style.display = 'none'
-    })
-
-}
+rankUsersDesc().then(data => {
+    console.log('users array::', data)
+    Run(data)
+}).catch(err => {
+    console.log('error rank users::', err)
+})
