@@ -184,7 +184,7 @@ topnextpegprice.innerHTML = 'Next Level: '+(ethers.utils.formatUnits(milestone.p
     getAllMileStones().then(function() {
       
         setTimeout(function() {
-          allUsersInMileStone = allUsersInMileStone.sort((a, b) => b.usdcDonations.toNumber() - a.usdcDonations.toNumber());
+          allUsersInMileStone = allUsersInMileStone.length?allUsersInMileStone.sort((a, b) => b.usdcDonations.toNumber() - a.usdcDonations.toNumber()):null
                  
           console.log('allUsersInMileStone::', allUsersInMileStone)
           console.log('all milestones::', allMileStones)
