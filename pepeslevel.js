@@ -2,7 +2,7 @@
 
 const pepesLevelData = allMileStones
 
-console.log('levels data::', pepesLevelData)
+// console.log('levels data::', pepesLevelData)
 
 const levelsPepesTable = document.querySelector('[datasource="levels-pepes-table"]');
 
@@ -138,7 +138,6 @@ function loadPepesTableLevels(data, startIndex) {
 //Loading the first data
 loadPepesTableLevels(pepesLevelData.slice(0, 4), 1)
 
-console.log('len of pepe data::', pepesLevelData.length)
 if (pepesLevelData.length >= 10) {
    let showMoreLevelsButtonElement = document.createElement('div');
    showMoreLevelsButtonElement.setAttribute('id', 'showmoreLevelsButtonWrapper')

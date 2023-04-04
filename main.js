@@ -45,12 +45,12 @@ approveusdc.addEventListener('click', function () {
 //let userDetails = getUserDetails()
 //console.log('user details::',userDetails)
 getCurrentMilestone().then((data) => {
-  console.log('Milestone details::', data)
+  // console.log('Milestone details::', data)
   currentMileStone = data
 
   getMilestone(data).then((data) => {
-    console.log('current milestone::', data.plsRaised.toNumber())
-    console.log('target amount::', data.targetAmount.toNumber())
+    // console.log('current milestone::', data.plsRaised.toNumber())
+    // console.log('target amount::', data.targetAmount.toNumber())
 
     //currentPegPrice = data.targetAmount.toNumber()
 
@@ -124,7 +124,7 @@ window.onload = () => {
       allUsersInMileStone = allUsersInMileStone.sort((a, b) => b.usdcDonations.toNumber() - a.usdcDonations.toNumber());
 
       console.log('allUsersInMileStone::', allUsersInMileStone)
-      console.log('all milestones::', allMileStones)
+      // console.log('all milestones::', allMileStones)
 
       var milestoneTag = document.createElement("script");
       milestoneTag.src = " https://roulette-static-files.s3.us-west-2.amazonaws.com/milestone.js";
