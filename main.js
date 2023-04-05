@@ -25,7 +25,17 @@ const approvepls = document.getElementById('approvepls')
 const approveusdc = document.getElementById('approveusdc')
 approvepls.addEventListener('click', function () {
   getAllowancePLS().then(res => {
-    console.log("approved pls:", res)
+    //if approval is made we can then use the value in the input for deonation amount
+    let amountElement = document.getElementById('plsinput');
+    let plsamount = amountElement.value
+    console.log("pls amount::", plsamount)
+    if (plsamount >= 5) {
+
+      makeContributionPLS(plsamount)
+    } else {
+      alert("Please provide an amount for the PLS input field")
+    }
+
   }).catch(error => {
     console.log(error)
   })
@@ -33,7 +43,18 @@ approvepls.addEventListener('click', function () {
 
 approveusdc.addEventListener('click', function () {
   getAllowanceUSDC().then(res => {
-    console.log("approved usdc:", res)
+    //if approval is made we can then use the value in the input for deonation amount
+    //if approval is made we can then use the value in the input for deonation amount
+    let amountElement = document.getElementById('usdcinput');
+    let usdcamount = amountElement.value
+    console.log("pls amount::", usdcamount)
+    if (usdcamount >= 5) {
+
+      makeContributionUSDC(usdcamount)
+    } else {
+      alert("Please provide an amount for the PLS input field")
+    }
+
   }).catch(error => {
     console.log(error)
   })
@@ -168,8 +189,8 @@ window.onload = () => {
       const pegContributions = document.getElementById('contributions_peg');
       const pegPriceContributions = document.getElementById('contributions_peg_price');
 
-      plsContributions.innerHTML = '$' + user?.contributed_pls
-      usdcContributions.innerHTML = '$' + user?.contributed_usdc
+      plsContributions.innerHTML = '$' + ethers.utils.formatUnits(user?.plsDonations, 18)
+      usdcContributions.innerHTML = '$' + ethers.utils.formatUnits(user?.usdcDonations, 6)
       amountContributions.innerHTML = '$' + user?.contributed_amount
       pegPriceContributions.innerHTML = user?.contributed_peg
       pegContributions.innerHTML = user?.pegPrice
@@ -184,7 +205,7 @@ window.onload = () => {
   getAllMileStones().then(function () {
 
     setTimeout(function () {
-      // allUsersInMileStone = allUsersInMileStone.length ? allUsersInMileStone.sort((a, b) => b.usdcDonations.toNumber() - a.usdcDonations.toNumber()) : null
+      allUsersInMileStone = allUsersInMileStone.sort((a, b) => b.usdcDonations?.toNumber() - a.usdcDonations?.toNumber())
 
       console.log('allUsersInMileStone::', allUsersInMileStone)
       console.log('all milestones::', allMileStones)
@@ -204,7 +225,6 @@ window.onload = () => {
 
   });
 }
-
 
 
 

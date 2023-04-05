@@ -47,10 +47,10 @@ levelsData.slice(0, 10).forEach((entry, index) => {
             
             <div role="cell" class="table9_column is-width-large">
                 <div class="contribute-table-div">
-                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-normal">${ethers.utils.formatUnits(entry.plsRaised, 18)} </div>
+                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-normal">${ethers.utils.formatUnits(entry.plsRaised, 18).toFixed(2)} </div>
                 <img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/642aa5061c682780a92fd247_Group%20427320201.png" loading="lazy" alt="" class="icon">
                 </div>
-                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-small _1">$${ethers.utils.formatUnits(entry.usdcOfPlsRaised, 6)}</div>
+                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-small _1">$${ethers.utils.formatUnits(entry.usdcOfPlsRaised, 6).toFixed(2)}</div>
             </div>
 
 
@@ -59,10 +59,10 @@ levelsData.slice(0, 10).forEach((entry, index) => {
 
             <div role="cell" class="table9_column is-width-large">
                 <div class="contribute-table-div">
-                    <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-normal">${ethers.utils.formatUnits(entry.totalUSDCRaised, 6)} </div>
+                    <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-normal">${ethers.utils.formatUnits(entry.totalUSDCRaised, 6).toFixed(2)} </div>
                     <img src="https://uploads-ssl.webflow.com/641c2b181f41df422637adc5/642aaa0edcf1074770fd060b_%24PLS.png" loading="lazy" alt="" class="icon">
                 </div>
-                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-small _1">$${ethers.utils.formatUnits(entry.totalUSDCRaised, 6)}</div>
+                <div fs-cmssort-type="date" fs-cmssort-field="IDENTIFIER" class="text-table-small _1">$${ethers.utils.formatUnits(entry.totalUSDCRaised, 6).toFixed(2)}</div>
             </div>
 
 
