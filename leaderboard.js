@@ -18,6 +18,7 @@ async function getAllUsers() {
                 allUsers[user.user].plsDonations = allUsers[user.user].plsDonations.add(user.plsDonations)
                 allUsers[user.user].usdcDonations = allUsers[user.user].usdcDonations.add(user.usdcDonations)
                 allUsers[user.user].usdcOfPlsDonations = allUsers[user.user].usdcOfPlsDonations.add(user.usdcOfPlsDonations)
+                allUsers[user.user].totalDonation = ethers.utils.parseUnits('0',6)
                 allUsers[user.user].totalDonation = allUsers[user.user].totalDonation.add(user.usdcDonations).add(user.usdcOfPlsDonations)
             }
             else {
